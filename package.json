@@ -1,0 +1,20 @@
+{
+  "name": "health-supplement-ai-app",
+  "version": "1.0.0",
+  "description": "AI-powered health app for custom supplement guides and blood work analysis",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && npm run dev",
+    "client:dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": ["health", "supplements", "ai", "blood-work", "wellness"],
+  "author": "Health AI Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
