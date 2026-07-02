@@ -44,6 +44,9 @@ importers:
       '@dtt/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@hono/node-server':
+        specifier: ^2.0.6
+        version: 2.0.6(hono@4.12.27)
       '@hono/zod-validator':
         specifier: ^0.7.0
         version: 0.7.6(hono@4.12.27)(zod@4.4.3)
@@ -66,9 +69,6 @@ importers:
         specifier: ^4.1.8
         version: 4.4.3
     devDependencies:
-      '@hono/node-server':
-        specifier: ^2.0.6
-        version: 2.0.6(hono@4.12.27)
       '@types/node':
         specifier: ^22.0.0
         version: 22.20.0
@@ -7834,7 +7834,9 @@ snapshots:
       metro-runtime: 0.84.4
     transitivePeerDependencies:
       - '@babel/core'
+      - bufferutil
       - supports-color
+      - utf-8-validate
 
   '@react-native/normalize-colors@0.74.89': {}
 
