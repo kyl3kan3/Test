@@ -12,7 +12,6 @@ import {
   restorePurchases,
 } from "../../src/lib/purchases";
 import { useAppState } from "../../src/state/appState";
-import { useOnboarding } from "../../src/state/onboarding";
 
 /**
  * Hard paywall — no path into the app without the `pro` entitlement.
@@ -23,7 +22,6 @@ import { useOnboarding } from "../../src/state/onboarding";
 export default function Paywall() {
   const [busy, setBusy] = useState(false);
   const setPro = useAppState((s) => s.setPro);
-  const archetype = useOnboarding((s) => s.archetype)();
 
   const buy = async () => {
     setBusy(true);
