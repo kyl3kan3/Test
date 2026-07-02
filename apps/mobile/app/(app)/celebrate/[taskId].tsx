@@ -67,32 +67,43 @@ export default function Celebrate() {
       <Confetti />
       <View className="flex-1 justify-center">
         <Animated.View entering={FadeInUp.springify()}>
-          <Text className="font-body text-sm text-hype uppercase tracking-widest">
+          <Text className="font-body-semibold text-xs text-hype uppercase tracking-widest">
             Certified thing-doer
           </Text>
           <Text
             testID="celebrate-headline"
             className="font-display text-4xl text-ink mt-3 leading-[56px]"
           >
-            You did the thing.
+            You did{"\n"}
+            <Text className="text-hype">the thing.</Text>
           </Text>
           {task ? (
             <Text className="font-body text-lg text-ink-dim mt-4">“{task.title}”</Text>
           ) : null}
-          <View className="flex-row gap-3 mt-8">
-            <View className="rounded-2xl bg-surface border border-line px-5 py-4">
-              <Text className="font-display-medium text-2xl text-hype">{doneSteps}</Text>
-              <Text className="font-body text-xs text-ink-dim mt-1">steps slain</Text>
+          <View className="flex-row gap-2.5 mt-8">
+            <View className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4">
+              <Text
+                className="font-display text-2xl text-hype"
+                style={{ fontVariant: ["tabular-nums"] }}
+              >
+                {doneSteps}
+              </Text>
+              <Text className="font-body text-[11px] text-ink-dim mt-1">steps slain</Text>
             </View>
-            <View className="rounded-2xl bg-surface border border-line px-5 py-4">
-              <Text className="font-display-medium text-2xl text-hype">{minutes}m</Text>
-              <Text className="font-body text-xs text-ink-dim mt-1">of doing</Text>
+            <View className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4">
+              <Text
+                className="font-display text-2xl text-hype"
+                style={{ fontVariant: ["tabular-nums"] }}
+              >
+                {minutes}m
+              </Text>
+              <Text className="font-body text-[11px] text-ink-dim mt-1">of doing</Text>
             </View>
-            <View className="rounded-2xl bg-surface border border-line px-5 py-4">
-              <Text testID="celebrate-streak" className="font-display-medium text-2xl text-hype">
+            <View className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4">
+              <Text testID="celebrate-streak" className="font-display text-2xl text-hype">
                 🔥 {streak}
               </Text>
-              <Text className="font-body text-xs text-ink-dim mt-1">day streak</Text>
+              <Text className="font-body text-[11px] text-ink-dim mt-1">day streak</Text>
             </View>
           </View>
         </Animated.View>
@@ -120,12 +131,14 @@ export default function Celebrate() {
           ref={cardRef}
           data={{
             variant: "task_slayed",
-            headline: "I did the thing.",
-            taskTitle: task?.title,
+            // The task IS the headline — funnier and more shareable than stats.
+            headline: task ? `${task.title}: done.` : "I did the thing.",
+            taskTitle: task
+              ? `${doneSteps} comically small steps · ${minutes} minutes`
+              : undefined,
             stats: [
-              { label: "steps slain", value: String(doneSteps) },
-              { label: "minutes", value: `${minutes}` },
               { label: "day streak", value: `🔥 ${streak}` },
+              { label: "steps slain", value: String(doneSteps) },
             ],
           }}
         />

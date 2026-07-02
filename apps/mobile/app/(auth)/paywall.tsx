@@ -3,7 +3,9 @@ import { Alert, Text, View } from "react-native";
 import { router } from "expo-router";
 import { Screen } from "../../src/components/ui/Screen";
 import { Button } from "../../src/components/ui/Button";
+import { Aurora } from "../../src/components/Aurora";
 import { PaywallFooter } from "../../src/components/PaywallFooter";
+import { TrialTimeline } from "../../src/components/TrialTimeline";
 import {
   presentPaywall,
   purchasesAvailable,
@@ -47,30 +49,52 @@ export default function Paywall() {
   };
 
   return (
-    <Screen>
-      <View className="flex-1 justify-center">
-        <Text className="font-body text-sm text-primary uppercase tracking-widest">
+    <Screen scroll>
+      <Aurora />
+      <View className="flex-1 justify-center pt-6">
+        <Text className="font-body-semibold text-xs text-primary uppercase tracking-widest">
           One step left
         </Text>
-        <Text className="font-display text-3xl text-ink mt-3 leading-[44px]">
-          Unlock your coach
+        <Text className="font-display text-3xl text-ink mt-3 leading-[46px]">
+          Unlock{"\n"}
+          <Text className="text-primary">your coach</Text>
         </Text>
-        <Text className="font-body text-base text-ink-dim mt-4 leading-6">
-          Your {archetype.name} plan is built. DoTheThing is a paid app — that's
-          how the coach stays yours, with no ads and no data selling.
-        </Text>
-        <View className="mt-8 rounded-2xl bg-surface border border-line p-5">
+        <View className="mt-6 gap-2.5">
           {[
-            "Unlimited task breakdowns",
+            "Unlimited AI task breakdowns",
             "Live body-double focus sessions",
             "Photo-of-the-mess planning",
-            "Streaks with rest-day forgiveness",
+            "Streaks that forgive rest days",
           ].map((line) => (
-            <Text key={line} className="font-body text-base text-ink py-1.5">
-              ✓ {line}
-            </Text>
+            <View key={line} className="flex-row items-center gap-3">
+              <View className="h-5 w-5 items-center justify-center rounded-md bg-success/15">
+                <Text className="font-body-semibold text-[11px] text-success">✓</Text>
+              </View>
+              <Text className="font-body text-[15px] text-ink">{line}</Text>
+            </View>
           ))}
         </View>
+
+        <View className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4">
+          <View className="absolute -top-2.5 right-4 rounded-md bg-hype px-2 py-0.5">
+            <Text className="font-body-semibold text-[9px] tracking-widest text-on-primary">
+              SAVE 52%
+            </Text>
+          </View>
+          <Text className="font-body-semibold text-base text-ink">Yearly · $39.99</Text>
+          <Text className="font-body text-xs text-ink-dim mt-1">
+            3-day free trial, then $3.33/mo billed yearly. Auto-renews.
+          </Text>
+        </View>
+        <View className="mt-2.5 rounded-2xl border border-line bg-surface p-4">
+          <Text className="font-body-semibold text-base text-ink">Monthly · $6.99</Text>
+          <Text className="font-body text-xs text-ink-dim mt-1">
+            Auto-renews monthly. Cancel anytime.
+          </Text>
+        </View>
+
+        <TrialTimeline />
+
         {!purchasesAvailable ? (
           <Text className="font-body text-xs text-ink-dim mt-4">
             Store purchases run on the installed app. This build uses a test
@@ -78,13 +102,15 @@ export default function Paywall() {
           </Text>
         ) : null}
       </View>
-      <Button
-        testID="paywall-continue"
-        label="See plans & start"
-        big
-        loading={busy}
-        onPress={buy}
-      />
+      <View className="mt-6">
+        <Button
+          testID="paywall-continue"
+          label="Start my 3 free days"
+          big
+          loading={busy}
+          onPress={buy}
+        />
+      </View>
       <Text
         testID="paywall-signin"
         className="font-body text-sm text-ink-dim text-center py-3"

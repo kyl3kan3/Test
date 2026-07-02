@@ -3,6 +3,8 @@ import { Pressable, Text, TextInput, View } from "react-native";
 import { router, useFocusEffect } from "expo-router";
 import { Screen } from "../../src/components/ui/Screen";
 import { Button } from "../../src/components/ui/Button";
+import { Aurora } from "../../src/components/Aurora";
+import { ProgressRing } from "../../src/components/ProgressRing";
 import { api, type Task } from "../../src/lib/api";
 import { prepareImage } from "../../src/lib/imagePrep";
 import { useAppState } from "../../src/state/appState";
@@ -12,6 +14,13 @@ const ENERGY = [
   { level: 2, label: "Meh" },
   { level: 3, label: "Actually okay" },
 ];
+
+function greeting(): string {
+  const day = new Date().toLocaleDateString(undefined, { weekday: "long" });
+  const h = new Date().getHours();
+  const part = h < 12 ? "morning" : h < 18 ? "afternoon" : "evening";
+  return `${day} ${part}`;
+}
 
 export default function Home() {
   const me = useAppState((s) => s.me);
@@ -84,11 +93,12 @@ export default function Home() {
 
   return (
     <Screen scroll>
+      <Aurora />
       <View className="flex-row items-center justify-between">
         <Pressable
           testID="home-streak"
           onPress={() => router.push("/(app)/streak")}
-          className="flex-row items-center rounded-full bg-surface border border-line px-4 py-2"
+          className="flex-row items-center rounded-full bg-surface/80 border border-line px-4 py-2"
         >
           <Text className="font-body-semibold text-base text-hype">
             🔥 {streak}
@@ -112,32 +122,45 @@ export default function Home() {
         </View>
       </View>
 
-      <Text className="font-display-medium text-3xl text-ink mt-10 leading-[44px]">
-        What are you dreading?
+      <Text className="font-body text-sm text-ink-dim mt-9">{greeting()}</Text>
+      <Text className="font-display text-3xl text-ink mt-2 leading-[46px]">
+        What are you{"\n"}
+        <Text className="text-primary">dreading?</Text>
       </Text>
-      <TextInput
-        testID="home-task-input"
-        className="mt-5 rounded-2xl bg-surface border border-line px-5 py-5 font-body text-lg text-ink"
-        placeholder="e.g. the dish mountain"
-        placeholderTextColor="#9A9AB0"
-        value={title}
-        onChangeText={setTitle}
-        onSubmitEditing={breakdown}
-        returnKeyType="go"
-      />
+      <View
+        className="mt-6 rounded-2xl"
+        style={{
+          shadowColor: "#8B7CFF",
+          shadowOpacity: 0.35,
+          shadowRadius: 22,
+          shadowOffset: { width: 0, height: 0 },
+          elevation: 6,
+        }}
+      >
+        <TextInput
+          testID="home-task-input"
+          className="rounded-2xl bg-surface/90 border border-primary/50 px-5 py-5 font-body text-lg text-ink"
+          placeholder="e.g. the dish mountain"
+          placeholderTextColor="#9A9AB0"
+          value={title}
+          onChangeText={setTitle}
+          onSubmitEditing={breakdown}
+          returnKeyType="go"
+        />
+      </View>
 
-      <View className="flex-row gap-2 mt-4">
+      <View className="flex-row bg-surface border border-line rounded-full p-1 mt-4">
         {ENERGY.map((e) => (
           <Pressable
             key={e.level}
             testID={`home-energy-${e.level}`}
             onPress={() => setEnergy(e.level)}
-            className={`rounded-full border px-4 py-2 ${
-              energy === e.level ? "border-primary bg-primary/15" : "border-line bg-surface"
+            className={`flex-1 items-center rounded-full py-2 ${
+              energy === e.level ? "bg-primary/25 border border-primary/50" : ""
             }`}
           >
             <Text
-              className={`font-body text-xs ${energy === e.level ? "text-primary" : "text-ink-dim"}`}
+              className={`font-body text-xs ${energy === e.level ? "text-ink font-body-semibold" : "text-ink-dim"}`}
             >
               {e.label}
             </Text>
@@ -176,19 +199,31 @@ export default function Home() {
           </Text>
           {inProgress.map((task) => {
             const done = task.steps.filter((s) => s.status === "done").length;
+            const left = task.steps.length - done;
+            const mins = Math.max(
+              1,
+              Math.round(
+                task.steps
+                  .filter((s) => s.status === "todo")
+                  .reduce((a, s) => a + s.estimatedSeconds, 0) / 60,
+              ),
+            );
             return (
               <Pressable
                 key={task.id}
                 testID={`home-task-${task.id}`}
                 onPress={() => router.push(`/(app)/task/${task.id}`)}
-                className="mt-3 rounded-2xl bg-surface border border-line p-5"
+                className="mt-3 flex-row items-center gap-4 rounded-2xl bg-surface/90 border border-line p-4"
               >
-                <Text className="font-body-medium text-base text-ink">
-                  {task.title}
-                </Text>
-                <Text className="font-body text-sm text-ink-dim mt-1">
-                  {done}/{task.steps.length} steps done
-                </Text>
+                <ProgressRing done={done} total={task.steps.length} />
+                <View className="flex-1">
+                  <Text className="font-body-medium text-base text-ink">
+                    {task.title}
+                  </Text>
+                  <Text className="font-body text-xs text-ink-dim mt-0.5">
+                    {left} tiny step{left === 1 ? "" : "s"} left · ~{mins} min
+                  </Text>
+                </View>
               </Pressable>
             );
           })}

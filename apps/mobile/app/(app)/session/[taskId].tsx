@@ -1,20 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from "react-native-reanimated";
 import { useKeepAwake } from "expo-keep-awake";
 import { Screen } from "../../../src/components/ui/Screen";
 import { Button } from "../../../src/components/ui/Button";
 import { Timer } from "../../../src/components/Timer";
+import { Aurora } from "../../../src/components/Aurora";
 import { api, type Task } from "../../../src/lib/api";
 import { haptics } from "../../../src/lib/haptics";
-import { durations } from "../../../src/lib/motion";
 import { useCoachChat } from "../../../src/hooks/useCoachChat";
 
 export default function FocusSession() {
@@ -29,20 +22,6 @@ export default function FocusSession() {
   const [paused, setPaused] = useState(false);
   const [draft, setDraft] = useState("");
   const startedRef = useRef(false);
-
-  // Breathing background — slow 6s loop, calm not flashy.
-  const breath = useSharedValue(0);
-  useEffect(() => {
-    breath.value = withRepeat(
-      withTiming(1, { duration: durations.breath, easing: Easing.inOut(Easing.sin) }),
-      -1,
-      true,
-    );
-  }, [breath]);
-  const breathStyle = useAnimatedStyle(() => ({
-    opacity: 0.35 + breath.value * 0.3,
-    transform: [{ scale: 1 + breath.value * 0.12 }],
-  }));
 
   const steps = useMemo(
     () => (task?.steps ?? []).filter((s) => s.status !== "skipped"),
@@ -171,17 +150,13 @@ export default function FocusSession() {
 
   return (
     <Screen>
-      <Animated.View
-        pointerEvents="none"
-        className="absolute -top-32 self-center h-96 w-96 rounded-full bg-primary/20"
-        style={breathStyle}
-      />
+      <Aurora />
 
       <View className="flex-row items-center justify-between">
         <Pressable testID="session-bail" onPress={bail}>
           <Text className="font-body text-base text-ink-dim">Save & exit</Text>
         </Pressable>
-        <Text className="font-body text-sm text-ink-dim">
+        <Text className="font-body text-xs tracking-widest uppercase text-ink-dim">
           step {Math.min(doneCount + 1, stepCount)} of {stepCount}
         </Text>
       </View>
@@ -189,7 +164,7 @@ export default function FocusSession() {
       <View className="flex-1 items-center justify-center">
         <Text
           testID="session-step-title"
-          className="font-display-medium text-3xl text-ink text-center leading-[44px] px-2"
+          className="font-display text-3xl text-ink text-center leading-[44px] px-2"
         >
           {currentStep.title}
         </Text>
@@ -198,14 +173,34 @@ export default function FocusSession() {
             {currentStep.detail}
           </Text>
         ) : null}
-        <View className="mt-10">
+        <View className="mt-8">
           <Timer seconds={seconds} estimatedSeconds={currentStep.estimatedSeconds} />
+        </View>
+        <View className="flex-row gap-1.5 mt-6">
+          {steps.map((s, i) => (
+            <View
+              key={s.id}
+              className={`h-1 w-6 rounded-full ${
+                s.status === "done"
+                  ? "bg-success"
+                  : i === steps.findIndex((x) => x.status === "todo")
+                    ? "bg-primary"
+                    : "bg-raised"
+              }`}
+            />
+          ))}
         </View>
       </View>
 
-      <View className="rounded-2xl bg-surface border border-line p-4 mb-4">
+      <View className="rounded-2xl border border-primary/40 bg-surface/90 p-4 mb-4">
+        <View className="flex-row items-center gap-2 mb-1.5">
+          <View className="h-1.5 w-1.5 rounded-full bg-success" />
+          <Text className="font-body-semibold text-[10px] tracking-widest uppercase text-primary">
+            Coach · live
+          </Text>
+        </View>
         <Text testID="coach-line" className="font-body text-sm text-ink leading-5">
-          🧢 {lastAssistantText}
+          {lastAssistantText}
         </Text>
         <View className="flex-row items-center mt-3 gap-2">
           <TextInput
@@ -229,7 +224,13 @@ export default function FocusSession() {
       </View>
 
       <View className="gap-3 pb-2">
-        <Button testID="session-done" label="Done ✓" big onPress={completeStep} />
+        <Button
+          testID="session-done"
+          label="Done ✓"
+          variant="success"
+          big
+          onPress={completeStep}
+        />
         <View className="flex-row gap-3">
           <View className="flex-1">
             <Button

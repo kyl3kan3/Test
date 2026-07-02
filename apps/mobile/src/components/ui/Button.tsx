@@ -1,10 +1,12 @@
-import { ActivityIndicator, Pressable, Text } from "react-native";
+import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { haptics } from "../../lib/haptics";
 
-type Variant = "primary" | "surface" | "ghost" | "danger";
+type Variant = "primary" | "success" | "surface" | "ghost" | "danger";
 
 const CONTAINER: Record<Variant, string> = {
-  primary: "bg-primary active:bg-primary-pressed",
+  primary: "",
+  success: "",
   surface: "bg-raised border border-line active:bg-surface",
   ghost: "bg-transparent",
   danger: "bg-transparent border border-danger/40",
@@ -12,9 +14,15 @@ const CONTAINER: Record<Variant, string> = {
 
 const LABEL: Record<Variant, string> = {
   primary: "text-on-primary",
+  success: "text-on-primary",
   surface: "text-ink",
   ghost: "text-ink-dim",
   danger: "text-danger",
+};
+
+const GRADIENTS: Record<string, readonly [string, string, string]> = {
+  primary: ["#A99DFF", "#8B7CFF", "#5B4BE0"],
+  success: ["#7FF2C0", "#4ADE9E", "#2FB57F"],
 };
 
 export function Button({
@@ -34,7 +42,9 @@ export function Button({
   loading?: boolean;
   testID?: string;
 }) {
-  return (
+  const gradient = GRADIENTS[variant];
+
+  const inner = (
     <Pressable
       testID={testID}
       accessibilityRole="button"
@@ -44,10 +54,10 @@ export function Button({
         haptics.select();
         onPress();
       }}
-      className={`items-center justify-center rounded-2xl ${big ? "py-5" : "py-4"} px-6 ${CONTAINER[variant]} ${disabled ? "opacity-40" : ""}`}
+      className={`items-center justify-center rounded-2xl ${big ? "py-5" : "py-4"} px-6 ${CONTAINER[variant]} ${disabled && !gradient ? "opacity-40" : ""}`}
     >
       {loading ? (
-        <ActivityIndicator color="#0D0D14" />
+        <ActivityIndicator color={gradient ? "#0D0D14" : "#F4F4F8"} />
       ) : (
         <Text
           className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}
@@ -56,5 +66,30 @@ export function Button({
         </Text>
       )}
     </Pressable>
+  );
+
+  if (!gradient) return inner;
+
+  return (
+    <View
+      className={disabled ? "opacity-40" : ""}
+      style={{
+        borderRadius: 16,
+        shadowColor: gradient[1],
+        shadowOpacity: 0.45,
+        shadowRadius: 18,
+        shadowOffset: { width: 0, height: 10 },
+        elevation: 8,
+      }}
+    >
+      <LinearGradient
+        colors={gradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={{ borderRadius: 16 }}
+      >
+        {inner}
+      </LinearGradient>
+    </View>
   );
 }
