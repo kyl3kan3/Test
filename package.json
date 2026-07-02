@@ -1,0 +1,24 @@
+{
+  "name": "dothething",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "pnpm -r typecheck",
+    "lint": "eslint .",
+    "test": "pnpm -r test",
+    "check-lockstep": "node scripts/check-ai-lockstep.mjs",
+    "e2e": "playwright test -c e2e/playwright.config.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "@playwright/test": "^1.61.1",
+    "eslint": "^9.30.0",
+    "tsx": "^4.22.4",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "^8.35.0"
+  }
+}

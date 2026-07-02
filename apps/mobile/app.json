@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "DoTheThing",
+    "slug": "dothething",
+    "version": "1.0.0",
+    "scheme": "dothething",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0D0D14",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0D0D14"
+    },
+    "ios": {
+      "bundleIdentifier": "app.dothething.mobile",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Snap a photo of the mess and DoTheThing turns it into a tiny, doable plan.",
+        "NSPhotoLibraryUsageDescription": "Pick a photo of your space so DoTheThing can plan your first 2-minute step.",
+        "NSPhotoLibraryAddUsageDescription": "Save your celebration cards to share your wins.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "app.dothething.mobile",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#0D0D14"
+      },
+      "permissions": ["android.permission.CAMERA"]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Pick a photo of your space so DoTheThing can plan your first 2-minute step.",
+          "cameraPermission": "Snap a photo of the mess and DoTheThing turns it into a tiny, doable plan."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "savePhotosPermission": "Save your celebration cards to share your wins."
+        }
+      ],
+      "expo-notifications"
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}

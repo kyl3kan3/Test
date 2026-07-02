@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check-lockstep
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - name: API tests (Neon test branch)
+        env:
+          DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
+        run: pnpm --filter @dtt/api test
+      - name: Mobile unit tests
+        run: pnpm --filter @dtt/mobile test
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install Playwright chromium
+        run: npx playwright install --with-deps chromium
+      - name: Export web build (E2E mode)
+        working-directory: apps/mobile
+        env:
+          EXPO_PUBLIC_E2E: "1"
+          EXPO_PUBLIC_API_URL: http://localhost:3000
+        run: npx expo export -p web
+      - name: Playwright e2e
+        env:
+          DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
+          PLAYWRIGHT_CHROMIUM_PATH: ""
+        run: pnpm e2e

@@ -1,0 +1,25 @@
+{
+  "name": "@dtt/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./db/schema": "./src/db/schema.ts",
+    "./prompts": "./src/prompts.ts",
+    "./limits": "./src/limits.ts",
+    "./theme": "./src/theme.ts",
+    "./schemas/*": "./src/schemas/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'no tests in shared'"
+  },
+  "dependencies": {
+    "drizzle-orm": "0.45.2",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.0"
+  }
+}

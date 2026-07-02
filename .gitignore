@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+.expo/
+.vercel/
+web-build/
+coverage/
+e2e/test-results/
+e2e/playwright-report/
+*.tsbuildinfo
+.DS_Store
