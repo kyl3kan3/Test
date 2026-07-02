@@ -19,7 +19,13 @@
     "eslint": "^9.30.0",
     "tsx": "^4.22.4",
     "typescript": "~5.9.0",
-    "typescript-eslint": "^8.35.0"
+    "typescript-eslint": "^8.35.0",
+    "esbuild": "^0.25.0"
   },
-  "type": "module"
+  "type": "module",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
 }

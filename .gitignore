@@ -12,3 +12,4 @@ e2e/playwright-report/
 *.tsbuildinfo
 .DS_Store
 test-results/
+api/index.mjs
