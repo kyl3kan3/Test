@@ -8,19 +8,25 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://YOUR-API-DOMAIN.vercel.app"
+        "EXPO_PUBLIC_API_URL": "https://YOUR-API-DOMAIN.vercel.app",
+        "EXPO_PUBLIC_RC_IOS_KEY": "appl_oSKaoyDuFqfnclBljpKDcaZQKlQ",
+        "EXPO_PUBLIC_RC_ANDROID_KEY": "goog_IHBjRzSWYDxkLCzvTNhjGTZXtTp"
       }
     },
     "preview": {
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://YOUR-API-DOMAIN.vercel.app"
+        "EXPO_PUBLIC_API_URL": "https://YOUR-API-DOMAIN.vercel.app",
+        "EXPO_PUBLIC_RC_IOS_KEY": "appl_oSKaoyDuFqfnclBljpKDcaZQKlQ",
+        "EXPO_PUBLIC_RC_ANDROID_KEY": "goog_IHBjRzSWYDxkLCzvTNhjGTZXtTp"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://YOUR-API-DOMAIN.vercel.app"
+        "EXPO_PUBLIC_API_URL": "https://YOUR-API-DOMAIN.vercel.app",
+        "EXPO_PUBLIC_RC_IOS_KEY": "appl_oSKaoyDuFqfnclBljpKDcaZQKlQ",
+        "EXPO_PUBLIC_RC_ANDROID_KEY": "goog_IHBjRzSWYDxkLCzvTNhjGTZXtTp"
       }
     }
   },

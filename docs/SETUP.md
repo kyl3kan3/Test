@@ -9,6 +9,15 @@ Everything the code needs to run, and where each key goes.
 | Neon project | `dothething` (project id `quiet-glitter-59483542`, aws-us-east-1) |
 | Neon branches | `main` (production) + `test` (integration tests / e2e) |
 | Schema | Applied to both branches via `drizzle-kit migrate` (`apps/api/drizzle/`) |
+| RevenueCat project | `DoTheThing` (project id `proj53d6a450`) |
+| RC apps | iOS `app19619b61bf` (bundle `app.dothething.mobile`), Android `appe726220701` |
+| RC products | iOS: `pro_yearly`, `pro_monthly` · Android: `pro_yearly:annual`, `pro_monthly:monthly` |
+| RC offering | `default` (current) with `$rc_annual` (highlighted) + `$rc_monthly` packages, products attached for both stores |
+| RC public SDK keys | Already wired into `apps/mobile/eas.json` (public keys — meant to ship in the binary) |
+
+**One manual RevenueCat step remains** (the connector token lacked the entitlements scope):
+in the RC dashboard → Project settings → Entitlements → create entitlement with identifier **`pro`**,
+then attach all four products to it. Everything else RC-side is done.
 
 ## 2. Environment variables
 
@@ -53,11 +62,20 @@ GitHub Actions secret: `DATABASE_URL_TEST` (used by API tests + e2e).
    trial), and an App Store Connect API key for EAS submit.
 2. **Google Play Console** ($25 one-time). Same product ids; service-account
    JSON shared with RevenueCat and EAS.
-3. **RevenueCat** (free to start): project → iOS + Android apps → entitlement
-   **`pro`** → offering **`default`** with both packages → **Paywall** template
-   (enable full price + renewal term display) → **Webhook** to
-   `https://<api-domain>/api/webhooks/revenuecat` with the auth header value
-   from `REVENUECAT_WEBHOOK_AUTH`.
+3. **RevenueCat** — mostly done already (see §1). Remaining dashboard steps:
+   1. Create entitlement **`pro`** and attach all four products (connector scope
+      blocked this one call).
+   2. Review + **publish** the AI-generated paywall draft
+      ([builder link](https://app.revenuecat.com/projects/53d6a450/paywalls/pw195c163e44c74925/builder),
+      paywall id `pw195c163e44c74925`) and attach it to the `default` offering.
+      Consider removing the close (X) button — this is a hard paywall (the app
+      gates on entitlement either way, but no-X converts better).
+   3. Add the **webhook** once the API is deployed:
+      `https://<api-domain>/api/webhooks/revenuecat`, auth header = the value
+      you set as `REVENUECAT_WEBHOOK_AUTH` on Vercel.
+   4. After Apple/Google accounts exist: upload App Store Connect API key +
+      Play service-account JSON in RC app settings, and create the store
+      products with matching identifiers.
 4. **Expo/EAS**: `npm i -g eas-cli && eas login && eas init` inside
    `apps/mobile` (writes `extra.eas.projectId`).
 5. **Resend** for OTP email, **domain** `dothething.app` (Terms/Privacy pages
