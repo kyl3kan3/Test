@@ -1,0 +1,56 @@
+import "../global.css";
+import { useEffect } from "react";
+import { View } from "react-native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import * as SplashScreen from "expo-splash-screen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  Lexend_400Regular,
+  Lexend_500Medium,
+  Lexend_600SemiBold,
+  useFonts,
+} from "@expo-google-fonts/lexend";
+import { Unbounded_500Medium, Unbounded_700Bold } from "@expo-google-fonts/unbounded";
+import { configurePurchases, getEntitlement, onEntitlementChange } from "../src/lib/purchases";
+import { useAppState } from "../src/state/appState";
+
+SplashScreen.preventAutoHideAsync().catch(() => {});
+
+export default function RootLayout() {
+  const setPro = useAppState((s) => s.setPro);
+  const [fontsLoaded] = useFonts({
+    Lexend_400Regular,
+    Lexend_500Medium,
+    Lexend_600SemiBold,
+    Unbounded_500Medium,
+    Unbounded_700Bold,
+  });
+
+  useEffect(() => {
+    configurePurchases()
+      .then(() => getEntitlement())
+      .then((e) => setPro(e.isPro))
+      .catch(() => {});
+    return onEntitlementChange((e) => setPro(e.isPro));
+  }, [setPro]);
+
+  useEffect(() => {
+    if (fontsLoaded) SplashScreen.hideAsync().catch(() => {});
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: "#0D0D14" }} />;
+
+  return (
+    <SafeAreaProvider>
+      <StatusBar style="light" />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: "#0D0D14" },
+          animation: "fade",
+        }}
+      />
+    </SafeAreaProvider>
+  );
+}

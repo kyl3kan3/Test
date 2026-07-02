@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check-lockstep
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - name: API tests (Neon test branch)
+        env:
+          DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
+        run: |
+          if [ -z "$DATABASE_URL_TEST" ]; then
+            echo "::warning::DATABASE_URL_TEST secret not set — skipping API integration tests. Add the Neon test-branch URL as a repo secret to enable them."
+          else
+            pnpm --filter @dtt/api test
+          fi
+      - name: Mobile unit tests
+        run: pnpm --filter @dtt/mobile test
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Check e2e prerequisites
+        id: prereq
+        env:
+          DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
+        run: |
+          if [ -z "$DATABASE_URL_TEST" ]; then
+            echo "::warning::DATABASE_URL_TEST secret not set — skipping e2e. Add the Neon test-branch URL as a repo secret to enable it."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install Playwright chromium
+        if: steps.prereq.outputs.ready == 'true'
+        run: npx playwright install --with-deps chromium
+      - name: Export web build (E2E mode)
+        if: steps.prereq.outputs.ready == 'true'
+        working-directory: apps/mobile
+        env:
+          EXPO_PUBLIC_E2E: "1"
+          EXPO_PUBLIC_API_URL: http://localhost:3000
+        run: npx expo export -p web
+      - name: Playwright e2e
+        if: steps.prereq.outputs.ready == 'true'
+        env:
+          DATABASE_URL_TEST: ${{ secrets.DATABASE_URL_TEST }}
+          PLAYWRIGHT_CHROMIUM_PATH: ""
+        run: pnpm e2e
