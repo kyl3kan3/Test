@@ -6,9 +6,11 @@ Everything the code needs to run, and where each key goes.
 
 | Thing | Value |
 |---|---|
-| Neon project | `dothething` (project id `quiet-glitter-59483542`, aws-us-east-1) |
-| Neon branches | `main` (production) + `test` (integration tests / e2e) |
-| Schema | Applied to both branches via `drizzle-kit migrate` (`apps/api/drizzle/`) |
+| **Neon project (production)** | `ADHDApp` (id `cool-rain-75506757`, Vercel-managed org, aws-us-east-1) — attached to the Vercel project via the Neon integration; `DATABASE_URL` is auto-injected into Vercel |
+| Neon branches | `main` (production) + `test` (`br-summer-frost-ah5hocrh`, integration tests / e2e) |
+| Schema | Applied via `drizzle-kit migrate` (`apps/api/drizzle/`); all 31 API tests green against the test branch |
+| Vercel project | `test` (`prj_hQ217OFrNusWcmOwsuD3XSYWEzcq`), git-integrated with `kyl3kan3/Test`; production domain `https://test-kyl3kan3-6147s-projects.vercel.app` (deploys `main`; PR branches get preview deployments) |
+| (deprecated) Neon project `dothething` | `quiet-glitter-59483542` — superseded by ADHDApp; safe to delete in the Neon console |
 | RevenueCat project | `DoTheThing` (project id `proj53d6a450`) |
 | RC apps | iOS `app19619b61bf` (bundle `app.dothething.mobile`), Android `appe726220701` |
 | RC products | iOS: `pro_yearly`, `pro_monthly` · Android: `pro_yearly:annual`, `pro_monthly:monthly` |
