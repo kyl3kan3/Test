@@ -30,7 +30,7 @@ then attach all four products to it. Everything else RC-side is done.
 | `DATABASE_URL` | Neon **main** branch pooled connection string (Neon console → Connect) |
 | `BETTER_AUTH_SECRET` | `openssl rand -base64 32` |
 | `BETTER_AUTH_URL` | `https://<your-api-domain>` |
-| `ANTHROPIC_API_KEY` | console.anthropic.com |
+| `ANTHROPIC_API_KEY` | console.anthropic.com — **the one env var still missing for AI features** |
 | `OPENAI_API_KEY` | (optional) platform.openai.com |
 | `AI_MODEL` | `anthropic:claude-sonnet-5` (swap to `openai:gpt-5.4` any time) |
 | `AI_MODEL_CHEAP` | `anthropic:claude-haiku-4-5` |
@@ -72,9 +72,11 @@ GitHub Actions secret: `DATABASE_URL_TEST` (used by API tests + e2e).
       paywall id `pw195c163e44c74925`) and attach it to the `default` offering.
       Consider removing the close (X) button — this is a hard paywall (the app
       gates on entitlement either way, but no-X converts better).
-   3. Add the **webhook** once the API is deployed:
-      `https://<api-domain>/api/webhooks/revenuecat`, auth header = the value
-      you set as `REVENUECAT_WEBHOOK_AUTH` on Vercel.
+   3. Add the **webhook**: URL
+      `https://test-kyl3kan3-6147s-projects.vercel.app/api/webhooks/revenuecat`,
+      auth header = the `REVENUECAT_WEBHOOK_AUTH` value (already set in Vercel
+      env — copy it from the Vercel dashboard). Also paste the RC **secret API
+      key** into Vercel as `REVENUECAT_SECRET_KEY`.
    4. After Apple/Google accounts exist: upload App Store Connect API key +
       Play service-account JSON in RC app settings, and create the store
       products with matching identifiers.
