@@ -8,7 +8,7 @@
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://test-kyl3kan3-6147s-projects.vercel.app",
+        "EXPO_PUBLIC_API_URL": "https://test-six-rho-qcpw39t96j.vercel.app",
         "EXPO_PUBLIC_RC_IOS_KEY": "appl_oSKaoyDuFqfnclBljpKDcaZQKlQ",
         "EXPO_PUBLIC_RC_ANDROID_KEY": "goog_IHBjRzSWYDxkLCzvTNhjGTZXtTp"
       }
@@ -16,7 +16,7 @@
     "preview": {
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://test-kyl3kan3-6147s-projects.vercel.app",
+        "EXPO_PUBLIC_API_URL": "https://test-six-rho-qcpw39t96j.vercel.app",
         "EXPO_PUBLIC_RC_IOS_KEY": "appl_oSKaoyDuFqfnclBljpKDcaZQKlQ",
         "EXPO_PUBLIC_RC_ANDROID_KEY": "goog_IHBjRzSWYDxkLCzvTNhjGTZXtTp"
       }
@@ -24,7 +24,7 @@
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://test-kyl3kan3-6147s-projects.vercel.app",
+        "EXPO_PUBLIC_API_URL": "https://test-six-rho-qcpw39t96j.vercel.app",
         "EXPO_PUBLIC_RC_IOS_KEY": "appl_oSKaoyDuFqfnclBljpKDcaZQKlQ",
         "EXPO_PUBLIC_RC_ANDROID_KEY": "goog_IHBjRzSWYDxkLCzvTNhjGTZXtTp"
       }

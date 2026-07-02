@@ -9,7 +9,7 @@ Everything the code needs to run, and where each key goes.
 | **Neon project (production)** | `ADHDApp` (id `cool-rain-75506757`, Vercel-managed org, aws-us-east-1) — attached to the Vercel project via the Neon integration; `DATABASE_URL` is auto-injected into Vercel |
 | Neon branches | `main` (production) + `test` (`br-summer-frost-ah5hocrh`, integration tests / e2e) |
 | Schema | Applied via `drizzle-kit migrate` (`apps/api/drizzle/`); all 31 API tests green against the test branch |
-| Vercel project | `test` (`prj_hQ217OFrNusWcmOwsuD3XSYWEzcq`), git-integrated with `kyl3kan3/Test`; production domain `https://test-kyl3kan3-6147s-projects.vercel.app` (deploys `main`; PR branches get preview deployments) |
+| Vercel project | `test` (`prj_hQ217OFrNusWcmOwsuD3XSYWEzcq`), git-integrated with `kyl3kan3/Test`; production domain `https://test-six-rho-qcpw39t96j.vercel.app` (deploys `main`; PR branches get preview deployments) |
 | (deprecated) Neon project `dothething` | `quiet-glitter-59483542` — superseded by ADHDApp; safe to delete in the Neon console |
 | RevenueCat project | `DoTheThing` (project id `proj53d6a450`) |
 | RC apps | iOS `app19619b61bf` (bundle `app.dothething.mobile`), Android `appe726220701` |
@@ -73,7 +73,7 @@ GitHub Actions secret: `DATABASE_URL_TEST` (used by API tests + e2e).
       Consider removing the close (X) button — this is a hard paywall (the app
       gates on entitlement either way, but no-X converts better).
    3. Add the **webhook**: URL
-      `https://test-kyl3kan3-6147s-projects.vercel.app/api/webhooks/revenuecat`,
+      `https://test-six-rho-qcpw39t96j.vercel.app/api/webhooks/revenuecat`,
       auth header = the `REVENUECAT_WEBHOOK_AUTH` value (already set in Vercel
       env — copy it from the Vercel dashboard). Also paste the RC **secret API
       key** into Vercel as `REVENUECAT_SECRET_KEY`.
