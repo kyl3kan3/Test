@@ -40,5 +40,7 @@ export const auth = betterAuth({
     "dothething://*",
     "http://localhost:8081", // expo dev server
     "http://localhost:8788", // e2e web export
+    ...(process.env.BETTER_AUTH_URL ? [process.env.BETTER_AUTH_URL] : []),
+    "https://*.vercel.app", // preview deployments
   ],
 });
