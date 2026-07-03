@@ -11,11 +11,12 @@ export default function Hook() {
           Your brain isn't broken.
         </Text>
         <Text className="font-display text-4xl leading-[52px] text-primary mt-2">
-          Your to-do list is.
+          The mental load is.
         </Text>
         <Text className="font-body text-base text-ink-dim mt-6 leading-6">
-          DoTheThing is an AI body-double for ADHD brains. It breaks the scary
-          task into 2-minute steps and sits with you while you start.
+          DoTheThing is an AI body-double for ADHD moms carrying it all. It
+          breaks the dreaded task into 2-minute steps and sits with you while
+          you start — no judgment about the laundry.
         </Text>
       </View>
       <Button

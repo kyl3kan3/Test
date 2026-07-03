@@ -9,8 +9,8 @@ import { useOnboarding } from "../../src/state/onboarding";
 
 const BUILD_LINES = [
   "Reading your answers…",
-  "Calibrating step sizes for your brain…",
-  "Teaching your coach how to hype you…",
+  "Calibrating step sizes for your brain — and your actual day…",
+  "Teaching your coach how to hype you, interruptions and all…",
 ];
 
 export default function Building() {

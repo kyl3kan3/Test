@@ -35,6 +35,13 @@ export const useOnboarding = create<OnboardingState>((set, get) => ({
   archetype: () => {
     const a = get().answers;
     const types = a.worstTaskTypes ?? [];
+    if (types.includes("Kids & family logistics")) {
+      return {
+        name: "Household CEO",
+        blurb:
+          "You're running the whole operation on an ADHD brain, solo half the time. We're not another thing on the list — we're the thing that gets the list moving.",
+      };
+    }
     if (types.includes("Cleaning") || types.includes("Errands")) {
       return {
         name: "Overwhelmed Optimist",
