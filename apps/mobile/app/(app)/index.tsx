@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { router, useFocusEffect } from "expo-router";
+import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { Screen } from "../../src/components/ui/Screen";
 import { Button } from "../../src/components/ui/Button";
 import { Aurora } from "../../src/components/Aurora";
@@ -122,11 +123,13 @@ export default function Home() {
         </View>
       </View>
 
-      <Text className="font-body text-sm text-ink-dim mt-9">{greeting()}</Text>
-      <Text className="font-display text-3xl text-ink mt-2 leading-[46px]">
-        What are you{"\n"}
-        <Text className="text-primary">dreading?</Text>
-      </Text>
+      <Animated.View entering={FadeInDown.duration(420).springify()}>
+        <Text className="font-body text-sm text-ink-dim mt-9">{greeting()}</Text>
+        <Text className="font-display text-3xl text-ink mt-2 leading-[46px]">
+          What are you{"\n"}
+          <Text className="text-primary">dreading?</Text>
+        </Text>
+      </Animated.View>
       <View
         className="mt-6 rounded-2xl"
         style={{
@@ -197,7 +200,7 @@ export default function Home() {
           <Text className="font-body-semibold text-sm text-ink-dim uppercase tracking-widest">
             Pick back up
           </Text>
-          {inProgress.map((task) => {
+          {inProgress.map((task, i) => {
             const done = task.steps.filter((s) => s.status === "done").length;
             const left = task.steps.length - done;
             const mins = Math.max(
@@ -209,22 +212,23 @@ export default function Home() {
               ),
             );
             return (
-              <Pressable
-                key={task.id}
-                testID={`home-task-${task.id}`}
-                onPress={() => router.push(`/(app)/task/${task.id}`)}
-                className="mt-3 flex-row items-center gap-4 rounded-2xl bg-surface/90 border border-line p-4"
-              >
-                <ProgressRing done={done} total={task.steps.length} />
-                <View className="flex-1">
-                  <Text className="font-body-medium text-base text-ink">
-                    {task.title}
-                  </Text>
-                  <Text className="font-body text-xs text-ink-dim mt-0.5">
-                    {left} tiny step{left === 1 ? "" : "s"} left · ~{mins} min
-                  </Text>
-                </View>
-              </Pressable>
+              <Animated.View key={task.id} entering={FadeInUp.delay(i * 80).springify()}>
+                <Pressable
+                  testID={`home-task-${task.id}`}
+                  onPress={() => router.push(`/(app)/task/${task.id}`)}
+                  className="mt-3 flex-row items-center gap-4 rounded-2xl bg-surface/90 border border-line p-4"
+                >
+                  <ProgressRing done={done} total={task.steps.length} />
+                  <View className="flex-1">
+                    <Text className="font-body-medium text-base text-ink">
+                      {task.title}
+                    </Text>
+                    <Text className="font-body text-xs text-ink-dim mt-0.5">
+                      {left} tiny step{left === 1 ? "" : "s"} left · ~{mins} min
+                    </Text>
+                  </View>
+                </Pressable>
+              </Animated.View>
             );
           })}
         </View>

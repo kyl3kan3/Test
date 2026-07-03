@@ -39,16 +39,17 @@ export default function Recap() {
               { label: "minutes focused", value: recap.minutesFocused },
               { label: "sessions", value: recap.sessions },
               { label: "active days", value: recap.activeDays },
-            ].map((stat) => (
-              <View
+            ].map((stat, i) => (
+              <Animated.View
                 key={stat.label}
+                entering={FadeInUp.delay(i * 70).springify()}
                 className="rounded-2xl bg-surface border border-line px-5 py-4 min-w-[45%]"
               >
                 <Text className="font-display-medium text-3xl text-primary">
                   {stat.value}
                 </Text>
                 <Text className="font-body text-xs text-ink-dim mt-1">{stat.label}</Text>
-              </View>
+              </Animated.View>
             ))}
           </View>
 

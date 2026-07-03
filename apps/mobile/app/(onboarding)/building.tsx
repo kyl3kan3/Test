@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { router } from "expo-router";
-import Animated, { FadeInUp } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInUp, FadeOut } from "react-native-reanimated";
 import { Screen } from "../../src/components/ui/Screen";
 import { Button } from "../../src/components/ui/Button";
 import { ProgressBar } from "../../src/components/ProgressBar";
@@ -32,9 +32,14 @@ export default function Building() {
       <Screen>
         <View className="flex-1 justify-center">
           <ProgressBar progress={(phase + 1) / 3} />
-          <Text className="font-body-medium text-lg text-ink mt-6">
+          <Animated.Text
+            key={phase}
+            entering={FadeIn.duration(220)}
+            exiting={FadeOut.duration(150)}
+            className="font-body-medium text-lg text-ink mt-6"
+          >
             {BUILD_LINES[phase]}
-          </Text>
+          </Animated.Text>
         </View>
       </Screen>
     );
@@ -58,10 +63,14 @@ export default function Building() {
               "Steps so small they feel silly — that's the point",
               "A coach in your ear while you start",
               "Streaks that forgive a bad day",
-            ].map((line) => (
-              <Text key={line} className="font-body text-base text-ink py-1.5">
+            ].map((line, i) => (
+              <Animated.Text
+                key={line}
+                entering={FadeInUp.delay(200 + i * 90).springify()}
+                className="font-body text-base text-ink py-1.5"
+              >
                 ✓ {line}
-              </Text>
+              </Animated.Text>
             ))}
           </View>
         </Animated.View>

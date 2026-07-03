@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { useKeepAwake } from "expo-keep-awake";
+import Animated, { FadeInUp, FadeOutDown, ZoomIn } from "react-native-reanimated";
 import { Screen } from "../../../src/components/ui/Screen";
 import { Button } from "../../../src/components/ui/Button";
 import { Timer } from "../../../src/components/Timer";
@@ -162,24 +163,32 @@ export default function FocusSession() {
       </View>
 
       <View className="flex-1 items-center justify-center">
-        <Text
-          testID="session-step-title"
-          className="font-display text-2xl text-ink text-center leading-9 px-2 mt-6"
+        <Animated.View
+          key={currentStep.id}
+          entering={FadeInUp.duration(360).springify()}
+          exiting={FadeOutDown.duration(200)}
+          className="items-center"
         >
-          {currentStep.title}
-        </Text>
-        {currentStep.detail ? (
-          <Text className="font-body text-sm text-ink-dim text-center mt-2.5 px-4">
-            {currentStep.detail}
+          <Text
+            testID="session-step-title"
+            className="font-display text-2xl text-ink text-center leading-9 px-2 mt-6"
+          >
+            {currentStep.title}
           </Text>
-        ) : null}
+          {currentStep.detail ? (
+            <Text className="font-body text-sm text-ink-dim text-center mt-2.5 px-4">
+              {currentStep.detail}
+            </Text>
+          ) : null}
+        </Animated.View>
         <View className="mt-6">
           <Timer seconds={seconds} estimatedSeconds={currentStep.estimatedSeconds} />
         </View>
         <View className="flex-row gap-1.5 mt-6">
           {steps.map((s, i) => (
-            <View
-              key={s.id}
+            <Animated.View
+              key={`${s.id}-${s.status}`}
+              entering={s.status === "done" ? ZoomIn.springify() : undefined}
               className={`h-1 w-6 rounded-full ${
                 s.status === "done"
                   ? "bg-success"

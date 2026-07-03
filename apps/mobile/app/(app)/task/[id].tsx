@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
-import Animated, { FadeInUp } from "react-native-reanimated";
+import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { Screen } from "../../../src/components/ui/Screen";
 import { Button } from "../../../src/components/ui/Button";
 import { api, type Task } from "../../../src/lib/api";
@@ -41,21 +41,23 @@ export default function TaskDetail() {
         <Text className="font-body text-base text-ink-dim">← Back</Text>
       </Pressable>
 
-      <Text className="font-display-medium text-2xl text-ink mt-6 leading-9">
-        {task.title}
-      </Text>
-      {task.vibeCheck ? (
-        <View className="mt-4 rounded-2xl bg-primary/10 border border-primary/30 p-4">
-          <Text testID="task-vibecheck" className="font-body text-sm text-ink leading-5">
-            {task.vibeCheck}
-          </Text>
-        </View>
-      ) : null}
-      {task.observations && task.observations.length > 0 ? (
-        <Text className="font-body text-xs text-ink-dim mt-3">
-          Spotted: {task.observations.join(" · ")}
+      <Animated.View entering={FadeInDown.duration(380).springify()}>
+        <Text className="font-display-medium text-2xl text-ink mt-6 leading-9">
+          {task.title}
         </Text>
-      ) : null}
+        {task.vibeCheck ? (
+          <View className="mt-4 rounded-2xl bg-primary/10 border border-primary/30 p-4">
+            <Text testID="task-vibecheck" className="font-body text-sm text-ink leading-5">
+              {task.vibeCheck}
+            </Text>
+          </View>
+        ) : null}
+        {task.observations && task.observations.length > 0 ? (
+          <Text className="font-body text-xs text-ink-dim mt-3">
+            Spotted: {task.observations.join(" · ")}
+          </Text>
+        ) : null}
+      </Animated.View>
 
       <View className="mt-6">
         {task.steps.map((step, i) => (
