@@ -19,15 +19,15 @@ function lastNDays(n: number): string[] {
 
 const DAY_LETTERS = ["S", "M", "T", "W", "T", "F", "S"];
 
-/** Soft mint glow behind the streak flame — the screen's one bright moment. */
+/** Soft coral glow behind the streak flame — the screen's one bright moment. */
 function FlameGlow() {
   return (
     <Svg width={220} height={220} style={{ position: "absolute" }}>
       <Defs>
         <RadialGradient id="fg" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor="#3BE38B" stopOpacity="0.5" />
-          <Stop offset="60%" stopColor="#16A05F" stopOpacity="0.18" />
-          <Stop offset="100%" stopColor="#16A05F" stopOpacity="0" />
+          <Stop offset="0%" stopColor="#FF7A59" stopOpacity="0.5" />
+          <Stop offset="60%" stopColor="#E85F3F" stopOpacity="0.18" />
+          <Stop offset="100%" stopColor="#E85F3F" stopOpacity="0" />
         </RadialGradient>
       </Defs>
       <Circle cx={110} cy={110} r={110} fill="url(#fg)" />

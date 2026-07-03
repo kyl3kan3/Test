@@ -32,7 +32,7 @@ const LABEL: Record<Variant, string> = {
 };
 
 const GRADIENTS: Record<string, readonly [string, string, string]> = {
-  primary: ["#8DF5BE", "#3BE38B", "#16A05F"],
+  primary: ["#FFAB8F", "#FF7A59", "#E85F3F"],
   success: ["#7FF2C0", "#4ADE9E", "#2FB57F"],
 };
 
@@ -97,7 +97,7 @@ export function Button({
   };
 
   const content = loading ? (
-    <ActivityIndicator color={gradient ? "#0D0D14" : "#F4F4F8"} />
+    <ActivityIndicator color={gradient ? "#1A0F0A" : "#F8F1EA"} />
   ) : (
     <Text className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}>
       {label}
