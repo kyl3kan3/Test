@@ -1,26 +1,26 @@
 /**
- * "Calm arcade" design tokens — dark, low-stimulation base with high-dopamine
- * accents reserved for wins. Dark-only at v1.
+ * "Night garden" design tokens — deep forest-green base with a glowing mint
+ * accent (PepKit-style premium health-tracker look). Dark-only at v1.
  * All text/surface pairs hold >= 4.5:1 contrast:
- *   text (#F4F4F8) on bg (#0D0D14)      ~17.8:1
- *   text on surface (#171723)            ~15.2:1
- *   textDim (#9A9AB0) on bg              ~6.6:1
- *   bg text (#0D0D14) on primary (#8B7CFF) ~6.9:1
+ *   text (#F1F7F2) on bg (#070B09)        ~19.4:1
+ *   text on surface (#0F1712)             ~17.5:1
+ *   textDim (#90A79A) on bg               ~7.6:1
+ *   bg text (#04120A) on primary (#3BE38B) ~11.9:1
  */
 export const colors = {
-  bg: "#0D0D14",
-  surface: "#171723",
-  surfaceRaised: "#1F1F2E",
-  border: "#2A2A3D",
-  primary: "#8B7CFF",
-  primaryPressed: "#6F5FE6",
-  hype: "#FF7A59",
+  bg: "#070B09",
+  surface: "#0F1712",
+  surfaceRaised: "#16221B",
+  border: "#22322A",
+  primary: "#3BE38B",
+  primaryPressed: "#2BBD6E",
+  hype: "#FFC24B",
   success: "#4ADE9E",
   freeze: "#7DD3FC",
   danger: "#FB7185",
-  text: "#F4F4F8",
-  textDim: "#9A9AB0",
-  textOnPrimary: "#0D0D14",
+  text: "#F1F7F2",
+  textDim: "#90A79A",
+  textOnPrimary: "#04120A",
 } as const;
 
 export const fonts = {

@@ -67,10 +67,10 @@ function Blob({
 export function Aurora() {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Blob size={420} color="#5B4BE0" opacity={0.4} x={-90} y={-140} duration={18000} />
+      <Blob size={420} color="#16A05F" opacity={0.4} x={-90} y={-140} duration={18000} />
       <Blob
         size={300}
-        color="#FF7A59"
+        color="#FFC24B"
         opacity={0.13}
         x={190}
         y={-60}
