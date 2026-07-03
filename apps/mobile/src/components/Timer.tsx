@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { haptics } from "../lib/haptics";
 import { BreathingOrbit } from "./BreathingOrbit";
 
 /**
- * Count-UP step timer inside the breathing orbit — never a punitive
+ * Count-UP step timer inside the tick-gauge orbit — never a punitive
  * countdown. Soft haptic once when the estimate passes; keeps counting
- * calmly after.
+ * calmly after. The pace label lives inside the dial, PepKit-style.
  */
 export function Timer({
   seconds,
@@ -32,12 +32,16 @@ export function Timer({
 
   return (
     <View className="items-center">
-      <BreathingOrbit seconds={seconds} past={past} />
-      <Text className="font-body text-xs text-ink-dim mt-4">
-        {past
-          ? "no rush — still counts"
-          : `aiming for ~${Math.max(1, Math.round(estimatedSeconds / 60))} min`}
-      </Text>
+      <BreathingOrbit
+        seconds={seconds}
+        past={past}
+        progress={estimatedSeconds > 0 ? seconds / estimatedSeconds : 0}
+        label={
+          past
+            ? "no rush — still counts"
+            : `aiming for ~${Math.max(1, Math.round(estimatedSeconds / 60))} min`
+        }
+      />
     </View>
   );
 }

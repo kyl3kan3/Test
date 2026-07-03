@@ -40,7 +40,7 @@ export default function Login() {
           testID="login-email"
           className="mt-8 rounded-2xl bg-surface border border-line px-5 py-4 font-body text-base text-ink"
           placeholder="you@example.com"
-          placeholderTextColor="#9A9AB0"
+          placeholderTextColor="#90A79A"
           autoCapitalize="none"
           autoComplete="email"
           keyboardType="email-address"

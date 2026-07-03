@@ -21,7 +21,7 @@ const LABEL: Record<Variant, string> = {
 };
 
 const GRADIENTS: Record<string, readonly [string, string, string]> = {
-  primary: ["#A99DFF", "#8B7CFF", "#5B4BE0"],
+  primary: ["#8DF5BE", "#3BE38B", "#16A05F"],
   success: ["#7FF2C0", "#4ADE9E", "#2FB57F"],
 };
 
@@ -57,7 +57,7 @@ export function Button({
       className={`items-center justify-center rounded-2xl ${big ? "py-5" : "py-4"} px-6 ${CONTAINER[variant]} ${disabled && !gradient ? "opacity-40" : ""}`}
     >
       {loading ? (
-        <ActivityIndicator color={gradient ? "#0D0D14" : "#F4F4F8"} />
+        <ActivityIndicator color={gradient ? "#070B09" : "#F1F7F2"} />
       ) : (
         <Text
           className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}

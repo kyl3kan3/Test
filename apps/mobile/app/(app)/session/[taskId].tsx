@@ -164,16 +164,16 @@ export default function FocusSession() {
       <View className="flex-1 items-center justify-center">
         <Text
           testID="session-step-title"
-          className="font-display text-3xl text-ink text-center leading-[44px] px-2"
+          className="font-display text-2xl text-ink text-center leading-9 px-2 mt-6"
         >
           {currentStep.title}
         </Text>
         {currentStep.detail ? (
-          <Text className="font-body text-base text-ink-dim text-center mt-3 px-4">
+          <Text className="font-body text-sm text-ink-dim text-center mt-2.5 px-4">
             {currentStep.detail}
           </Text>
         ) : null}
-        <View className="mt-8">
+        <View className="mt-6">
           <Timer seconds={seconds} estimatedSeconds={currentStep.estimatedSeconds} />
         </View>
         <View className="flex-row gap-1.5 mt-6">
@@ -207,7 +207,7 @@ export default function FocusSession() {
             testID="coach-input"
             className="flex-1 rounded-xl bg-raised border border-line px-4 py-2.5 font-body text-sm text-ink"
             placeholder="I'm stuck / this is boring / help"
-            placeholderTextColor="#9A9AB0"
+            placeholderTextColor="#90A79A"
             value={draft}
             onChangeText={setDraft}
             onSubmitEditing={say}

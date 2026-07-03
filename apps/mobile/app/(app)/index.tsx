@@ -130,7 +130,7 @@ export default function Home() {
       <View
         className="mt-6 rounded-2xl"
         style={{
-          shadowColor: "#8B7CFF",
+          shadowColor: "#3BE38B",
           shadowOpacity: 0.35,
           shadowRadius: 22,
           shadowOffset: { width: 0, height: 0 },
@@ -141,7 +141,7 @@ export default function Home() {
           testID="home-task-input"
           className="rounded-2xl bg-surface/90 border border-primary/50 px-5 py-5 font-body text-lg text-ink"
           placeholder="e.g. the dish mountain"
-          placeholderTextColor="#9A9AB0"
+          placeholderTextColor="#90A79A"
           value={title}
           onChangeText={setTitle}
           onSubmitEditing={breakdown}
