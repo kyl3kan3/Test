@@ -1,6 +1,17 @@
-import { ActivityIndicator, Pressable, Text, View } from "react-native";
+import { useEffect } from "react";
+import { ActivityIndicator, Pressable, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import { haptics } from "../../lib/haptics";
+import { springs } from "../../lib/motion";
 
 type Variant = "primary" | "success" | "surface" | "ghost" | "danger";
 
@@ -21,9 +32,11 @@ const LABEL: Record<Variant, string> = {
 };
 
 const GRADIENTS: Record<string, readonly [string, string, string]> = {
-  primary: ["#8DF5BE", "#3BE38B", "#16A05F"],
+  primary: ["#FFAB8F", "#FF7A59", "#E85F3F"],
   success: ["#7FF2C0", "#4ADE9E", "#2FB57F"],
 };
+
+const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
 export function Button({
   label,
@@ -32,6 +45,7 @@ export function Button({
   big = false,
   disabled = false,
   loading = false,
+  pulse = false,
   testID,
 }: {
   label: string;
@@ -40,56 +54,103 @@ export function Button({
   big?: boolean;
   disabled?: boolean;
   loading?: boolean;
+  /** Slow attention-drawing glow, for the one primary CTA per screen. */
+  pulse?: boolean;
   testID?: string;
 }) {
   const gradient = GRADIENTS[variant];
+  const pressScale = useSharedValue(1);
+  const glow = useSharedValue(0);
 
-  const inner = (
+  useEffect(() => {
+    if (pulse && !disabled) {
+      glow.value = withRepeat(
+        withSequence(
+          withTiming(1, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+          withTiming(0, { duration: 1400, easing: Easing.inOut(Easing.sin) }),
+        ),
+        -1,
+        false,
+      );
+    } else {
+      glow.value = withTiming(0, { duration: 200 });
+    }
+  }, [pulse, disabled, glow]);
+
+  const pressStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: pressScale.value }],
+  }));
+  // Shadow-only pulse — deliberately no transform/scale here. A perpetually
+  // animating transform never settles, which makes Playwright (and some
+  // real-device accessibility tooling) treat the button as permanently
+  // "unstable" and unclickable.
+  const glowStyle = useAnimatedStyle(() => ({
+    shadowOpacity: 0.45 + glow.value * 0.35,
+    shadowRadius: 18 + glow.value * 14,
+  }));
+
+  const onPressIn = () => {
+    pressScale.value = withSpring(0.96, springs.snappy);
+  };
+  const onPressOut = () => {
+    pressScale.value = withSpring(1, springs.snappy);
+  };
+
+  const content = loading ? (
+    <ActivityIndicator color={gradient ? "#1A0F0A" : "#F8F1EA"} />
+  ) : (
+    <Text className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}>
+      {label}
+    </Text>
+  );
+
+  const pressable = (extraClassName: string) => (
     <Pressable
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={label}
       disabled={disabled || loading}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
       onPress={() => {
         haptics.select();
         onPress();
       }}
-      className={`items-center justify-center rounded-2xl ${big ? "py-5" : "py-4"} px-6 ${CONTAINER[variant]} ${disabled && !gradient ? "opacity-40" : ""}`}
+      className={`items-center justify-center rounded-2xl ${big ? "py-5" : "py-4"} px-6 ${extraClassName}`}
     >
-      {loading ? (
-        <ActivityIndicator color={gradient ? "#070B09" : "#F1F7F2"} />
-      ) : (
-        <Text
-          className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}
-        >
-          {label}
-        </Text>
-      )}
+      {content}
     </Pressable>
   );
 
-  if (!gradient) return inner;
+  if (!gradient) {
+    return (
+      <Animated.View style={pressStyle}>
+        {pressable(`${CONTAINER[variant]} ${disabled ? "opacity-40" : ""}`)}
+      </Animated.View>
+    );
+  }
 
   return (
-    <View
+    <Animated.View
       className={disabled ? "opacity-40" : ""}
-      style={{
-        borderRadius: 16,
-        shadowColor: gradient[1],
-        shadowOpacity: 0.45,
-        shadowRadius: 18,
-        shadowOffset: { width: 0, height: 10 },
-        elevation: 8,
-      }}
+      style={[
+        {
+          borderRadius: 16,
+          shadowColor: gradient[1],
+          shadowOffset: { width: 0, height: 10 },
+          elevation: 8,
+        },
+        glowStyle,
+      ]}
     >
-      <LinearGradient
+      <AnimatedLinearGradient
         colors={gradient}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={{ borderRadius: 16 }}
+        style={[{ borderRadius: 16 }, pressStyle]}
       >
-        {inner}
-      </LinearGradient>
-    </View>
+        {pressable("")}
+      </AnimatedLinearGradient>
+    </Animated.View>
   );
 }

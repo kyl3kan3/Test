@@ -1,26 +1,27 @@
 /**
- * "Night garden" design tokens — deep forest-green base with a glowing mint
- * accent (PepKit-style premium health-tracker look). Dark-only at v1.
+ * "Terracotta dusk" design tokens — warm near-black base with a glowing
+ * coral accent (no purple, no neon-green biohacker vibe — warmer and
+ * softer, built for the ADHD-mom audience). Dark-only at v1.
  * All text/surface pairs hold >= 4.5:1 contrast:
- *   text (#F1F7F2) on bg (#070B09)        ~19.4:1
- *   text on surface (#0F1712)             ~17.5:1
- *   textDim (#90A79A) on bg               ~7.6:1
- *   bg text (#04120A) on primary (#3BE38B) ~11.9:1
+ *   text (#F8F1EA) on bg (#120D0B)          ~17.1:1
+ *   text on surface (#1C1512)               ~14.6:1
+ *   textDim (#A89A8D) on bg                 ~6.9:1
+ *   textOnPrimary (#1A0F0A) on primary (#FF7A59) ~5.7:1
  */
 export const colors = {
-  bg: "#070B09",
-  surface: "#0F1712",
-  surfaceRaised: "#16221B",
-  border: "#22322A",
-  primary: "#3BE38B",
-  primaryPressed: "#2BBD6E",
+  bg: "#120D0B",
+  surface: "#1C1512",
+  surfaceRaised: "#251C17",
+  border: "#3B2E26",
+  primary: "#FF7A59",
+  primaryPressed: "#E85F3F",
   hype: "#FFC24B",
   success: "#4ADE9E",
   freeze: "#7DD3FC",
   danger: "#FB7185",
-  text: "#F1F7F2",
-  textDim: "#90A79A",
-  textOnPrimary: "#04120A",
+  text: "#F8F1EA",
+  textDim: "#A89A8D",
+  textOnPrimary: "#1A0F0A",
 } as const;
 
 export const fonts = {

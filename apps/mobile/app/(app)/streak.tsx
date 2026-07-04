@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { router } from "expo-router";
 import Svg, { Circle, Defs, RadialGradient, Stop } from "react-native-svg";
+import Animated, { FadeInUp, ZoomIn } from "react-native-reanimated";
 import { Screen } from "../../src/components/ui/Screen";
 import { api, type StreakView } from "../../src/lib/api";
 
@@ -18,15 +19,15 @@ function lastNDays(n: number): string[] {
 
 const DAY_LETTERS = ["S", "M", "T", "W", "T", "F", "S"];
 
-/** Soft mint glow behind the streak flame — the screen's one bright moment. */
+/** Soft coral glow behind the streak flame — the screen's one bright moment. */
 function FlameGlow() {
   return (
     <Svg width={220} height={220} style={{ position: "absolute" }}>
       <Defs>
         <RadialGradient id="fg" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor="#3BE38B" stopOpacity="0.5" />
-          <Stop offset="60%" stopColor="#16A05F" stopOpacity="0.18" />
-          <Stop offset="100%" stopColor="#16A05F" stopOpacity="0" />
+          <Stop offset="0%" stopColor="#FF7A59" stopOpacity="0.5" />
+          <Stop offset="60%" stopColor="#E85F3F" stopOpacity="0.18" />
+          <Stop offset="100%" stopColor="#E85F3F" stopOpacity="0" />
         </RadialGradient>
       </Defs>
       <Circle cx={110} cy={110} r={110} fill="url(#fg)" />
@@ -81,7 +82,11 @@ export default function Streak() {
       </View>
 
       <View className="items-center mt-8" style={{ height: 220 }}>
-        <View className="items-center justify-center" style={{ width: 220, height: 220 }}>
+        <Animated.View
+          entering={ZoomIn.duration(550).springify()}
+          className="items-center justify-center"
+          style={{ width: 220, height: 220 }}
+        >
           <FlameGlow />
           <Text className="text-4xl">🔥</Text>
           <Text
@@ -92,7 +97,7 @@ export default function Streak() {
             {current}
           </Text>
           <Text className="font-body text-sm text-ink-dim mt-1">day streak</Text>
-        </View>
+        </Animated.View>
       </View>
       <View className="items-center mt-1">
         <View className="flex-row items-center gap-2 rounded-full bg-primary/10 border border-primary/30 px-3.5 py-1.5">
@@ -109,7 +114,11 @@ export default function Streak() {
           const isToday = i === week.length - 1;
           const letter = DAY_LETTERS[new Date(`${day}T12:00:00Z`).getUTCDay()];
           return (
-            <View key={day} className="items-center gap-2">
+            <Animated.View
+              key={day}
+              entering={ZoomIn.delay(i * 45).springify()}
+              className="items-center gap-2"
+            >
               <Text className="font-body text-[11px] text-ink-dim">{letter}</Text>
               <View
                 className={`h-10 w-10 items-center justify-center rounded-full ${
@@ -128,15 +137,21 @@ export default function Streak() {
                   <Text className="text-xs">🧊</Text>
                 ) : null}
               </View>
-            </View>
+            </Animated.View>
           );
         })}
       </View>
 
       <View className="flex-row gap-2.5 mt-8">
-        <StatTile icon="🔥" value={current} label="Current streak" />
-        <StatTile icon="🏆" value={longest} label="Best streak" />
-        <StatTile icon="✅" value={totalDone} label="Days logged" />
+        {[
+          { icon: "🔥", value: current, label: "Current streak" },
+          { icon: "🏆", value: longest, label: "Best streak" },
+          { icon: "✅", value: totalDone, label: "Days logged" },
+        ].map((s, i) => (
+          <Animated.View key={s.label} entering={FadeInUp.delay(i * 90).springify()} className="flex-1">
+            <StatTile icon={s.icon} value={s.value} label={s.label} />
+          </Animated.View>
+        ))}
       </View>
 
       <View className="flex-row items-center justify-between mt-10">
@@ -148,9 +163,10 @@ export default function Streak() {
         </Text>
       </View>
       <View className="flex-row flex-wrap mt-4" style={{ gap: 10 }}>
-        {achievements.map((a) => (
-          <View
+        {achievements.map((a, i) => (
+          <Animated.View
             key={a.title}
+            entering={(a.done ? ZoomIn : FadeInUp).delay(i * 80).springify()}
             className={`rounded-2xl border p-4 ${
               a.done ? "border-primary/40 bg-primary/10" : "border-line bg-surface"
             }`}
@@ -159,16 +175,19 @@ export default function Streak() {
             <View className="flex-row items-center justify-between">
               <Text className="text-xl">{a.icon}</Text>
               {a.done ? (
-                <View className="h-5 w-5 items-center justify-center rounded-full bg-primary">
+                <Animated.View
+                  entering={ZoomIn.delay(i * 80 + 200).springify()}
+                  className="h-5 w-5 items-center justify-center rounded-full bg-primary"
+                >
                   <Text className="font-body-semibold text-[10px] text-on-primary">✓</Text>
-                </View>
+                </Animated.View>
               ) : null}
             </View>
             <Text className={`font-body-semibold text-sm mt-2 ${a.done ? "text-ink" : "text-ink-dim"}`}>
               {a.title}
             </Text>
             <Text className="font-body text-[11px] text-ink-dim mt-0.5">{a.detail}</Text>
-          </View>
+          </Animated.View>
         ))}
       </View>
 

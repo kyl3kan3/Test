@@ -39,7 +39,7 @@ export default function RootLayout() {
     if (fontsLoaded) SplashScreen.hideAsync().catch(() => {});
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: "#070B09" }} />;
+  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: "#120D0B" }} />;
 
   return (
     <SafeAreaProvider>
@@ -47,7 +47,7 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: "#070B09" },
+          contentStyle: { backgroundColor: "#120D0B" },
           animation: "fade",
         }}
       />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Alert, Text, View } from "react-native";
 import { router } from "expo-router";
+import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { Screen } from "../../src/components/ui/Screen";
 import { Button } from "../../src/components/ui/Button";
 import { Aurora } from "../../src/components/Aurora";
@@ -50,30 +51,39 @@ export default function Paywall() {
     <Screen scroll>
       <Aurora />
       <View className="flex-1 justify-center pt-6">
-        <Text className="font-body-semibold text-xs text-primary uppercase tracking-widest">
-          One step left
-        </Text>
-        <Text className="font-display text-3xl text-ink mt-3 leading-[46px]">
-          Unlock{"\n"}
-          <Text className="text-primary">your coach</Text>
-        </Text>
+        <Animated.View entering={FadeInDown.duration(420).springify()}>
+          <Text className="font-body-semibold text-xs text-primary uppercase tracking-widest">
+            One step left
+          </Text>
+          <Text className="font-display text-3xl text-ink mt-3 leading-[46px]">
+            Unlock{"\n"}
+            <Text className="text-primary">your coach</Text>
+          </Text>
+        </Animated.View>
         <View className="mt-6 gap-2.5">
           {[
             "Unlimited AI task breakdowns",
             "Live body-double focus sessions",
             "Photo-of-the-mess planning",
             "Streaks that forgive rest days",
-          ].map((line) => (
-            <View key={line} className="flex-row items-center gap-3">
+          ].map((line, i) => (
+            <Animated.View
+              key={line}
+              entering={FadeInUp.delay(150 + i * 70).springify()}
+              className="flex-row items-center gap-3"
+            >
               <View className="h-5 w-5 items-center justify-center rounded-md bg-success/15">
                 <Text className="font-body-semibold text-[11px] text-success">✓</Text>
               </View>
               <Text className="font-body text-[15px] text-ink">{line}</Text>
-            </View>
+            </Animated.View>
           ))}
         </View>
 
-        <View className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4">
+        <Animated.View
+          entering={FadeInUp.delay(450).springify()}
+          className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4"
+        >
           <View className="absolute -top-2.5 right-4 rounded-md bg-hype px-2 py-0.5">
             <Text className="font-body-semibold text-[9px] tracking-widest text-on-primary">
               SAVE 52%
@@ -83,13 +93,16 @@ export default function Paywall() {
           <Text className="font-body text-xs text-ink-dim mt-1">
             3-day free trial, then $3.33/mo billed yearly. Auto-renews.
           </Text>
-        </View>
-        <View className="mt-2.5 rounded-2xl border border-line bg-surface p-4">
+        </Animated.View>
+        <Animated.View
+          entering={FadeInUp.delay(520).springify()}
+          className="mt-2.5 rounded-2xl border border-line bg-surface p-4"
+        >
           <Text className="font-body-semibold text-base text-ink">Monthly · $6.99</Text>
           <Text className="font-body text-xs text-ink-dim mt-1">
             Auto-renews monthly. Cancel anytime.
           </Text>
-        </View>
+        </Animated.View>
 
         <TrialTimeline />
 
@@ -105,6 +118,7 @@ export default function Paywall() {
           testID="paywall-continue"
           label="Start my 3 free days"
           big
+          pulse
           loading={busy}
           onPress={buy}
         />

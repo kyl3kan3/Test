@@ -12,18 +12,27 @@ export const QUIZ_STEPS: QuizStep[] = [
   {
     key: "diagnosis",
     question: "Do you have ADHD?",
+    sub: "Diagnosed, suspected, or just recognizing yourself in every mom-with-ADHD video",
     options: ["Diagnosed", "Self-identified", "Still exploring", "Supporting someone"],
   },
   {
     key: "paralysisFrequency",
     question: "How often do you stare at a task and just… can't?",
+    sub: "Even with the kids fed, the day covered, everything else somehow done",
     options: ["Basically daily", "A few times a week", "About weekly"],
   },
   {
     key: "worstTaskTypes",
     question: "Which tasks glue you to the couch?",
     sub: "Pick all that apply",
-    options: ["Cleaning", "Emails/admin", "Starting work", "Errands", "Self-care"],
+    options: [
+      "Cleaning",
+      "Kids & family logistics",
+      "Emails/admin",
+      "Starting work",
+      "Errands",
+      "Self-care",
+    ],
     multi: true,
   },
   {
@@ -50,6 +59,7 @@ export const QUIZ_STEPS: QuizStep[] = [
       "I start things without the 2-hour spiral",
       "My space stops stressing me out",
       "The admin pile is gone",
+      "I'm not the only one holding it together",
       "I trust myself to follow through",
     ],
   },

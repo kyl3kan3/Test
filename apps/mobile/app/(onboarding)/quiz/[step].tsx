@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
+import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { Screen } from "../../../src/components/ui/Screen";
 import { Button } from "../../../src/components/ui/Button";
 import { Chip } from "../../../src/components/ui/Chip";
@@ -45,23 +46,26 @@ export default function QuizStep() {
   return (
     <Screen>
       <ProgressBar progress={(index + 1) / (QUIZ_STEPS.length + 1)} />
-      <Text className="font-display-medium text-2xl text-ink mt-8 leading-9">
-        {def.question}
-      </Text>
-      {def.sub ? (
-        <Text className="font-body text-sm text-ink-dim mt-2">{def.sub}</Text>
-      ) : null}
+      <Animated.View entering={FadeInDown.duration(360).springify()}>
+        <Text className="font-display-medium text-2xl text-ink mt-8 leading-9">
+          {def.question}
+        </Text>
+        {def.sub ? (
+          <Text className="font-body text-sm text-ink-dim mt-2">{def.sub}</Text>
+        ) : null}
+      </Animated.View>
       <View className="mt-8 flex-1">
         {def.options.map((option, i) => (
-          <Chip
-            key={option}
-            testID={`quiz-${index}-option-${i}`}
-            label={option}
-            selected={
-              def.multi ? multiPick.includes(option) : selectedSingle === option
-            }
-            onPress={() => (def.multi ? toggleMulti(option) : pickSingle(option))}
-          />
+          <Animated.View key={option} entering={FadeInUp.delay(i * 55).springify()}>
+            <Chip
+              testID={`quiz-${index}-option-${i}`}
+              label={option}
+              selected={
+                def.multi ? multiPick.includes(option) : selectedSingle === option
+              }
+              onPress={() => (def.multi ? toggleMulti(option) : pickSingle(option))}
+            />
+          </Animated.View>
         ))}
       </View>
       {def.multi ? (

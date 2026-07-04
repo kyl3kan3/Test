@@ -19,7 +19,7 @@ const GLOW = SIZE - 30;
 
 /**
  * Radial tick gauge around the count-up timer: a ring of dashes that light
- * up mint as the step progresses toward its estimate, over a slow breathing
+ * up coral as the step progresses toward its estimate, over a slow breathing
  * glow (6s box-breathing cadence — calm by entrainment, not decoration).
  */
 function TickRing({ progress }: { progress: number }) {
@@ -78,9 +78,9 @@ function BreathGlow() {
           width: GLOW,
           height: GLOW,
           borderRadius: GLOW / 2,
-          backgroundColor: "rgba(59,227,139,0.10)",
+          backgroundColor: "rgba(255,122,89,0.10)",
           borderWidth: 1.5,
-          borderColor: "rgba(59,227,139,0.35)",
+          borderColor: "rgba(255,122,89,0.35)",
         },
         style,
       ]}
@@ -114,7 +114,7 @@ export function BreathingOrbit({
           width: INNER,
           height: INNER,
           borderRadius: INNER / 2,
-          shadowColor: "#16A05F",
+          shadowColor: "#E85F3F",
           shadowOpacity: 0.5,
           shadowRadius: 24,
           elevation: 8,

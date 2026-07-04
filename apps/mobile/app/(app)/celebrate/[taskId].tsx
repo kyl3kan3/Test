@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Platform, Text, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
-import Animated, { FadeInUp } from "react-native-reanimated";
+import Animated, { FadeInUp, ZoomIn } from "react-native-reanimated";
 import { Screen } from "../../../src/components/ui/Screen";
 import { Button } from "../../../src/components/ui/Button";
 import { Confetti } from "../../../src/components/Confetti";
@@ -70,18 +70,22 @@ export default function Celebrate() {
           <Text className="font-body-semibold text-xs text-hype uppercase tracking-widest">
             Certified thing-doer
           </Text>
-          <Text
+          <Animated.Text
+            entering={ZoomIn.duration(500).springify()}
             testID="celebrate-headline"
             className="font-display text-4xl text-ink mt-3 leading-[56px]"
           >
             You did{"\n"}
             <Text className="text-hype">the thing.</Text>
-          </Text>
+          </Animated.Text>
           {task ? (
             <Text className="font-body text-lg text-ink-dim mt-4">“{task.title}”</Text>
           ) : null}
           <View className="flex-row gap-2.5 mt-8">
-            <View className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4">
+            <Animated.View
+              entering={ZoomIn.delay(150).springify()}
+              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+            >
               <Text
                 className="font-display text-2xl text-hype"
                 style={{ fontVariant: ["tabular-nums"] }}
@@ -89,8 +93,11 @@ export default function Celebrate() {
                 {doneSteps}
               </Text>
               <Text className="font-body text-[11px] text-ink-dim mt-1">steps slain</Text>
-            </View>
-            <View className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4">
+            </Animated.View>
+            <Animated.View
+              entering={ZoomIn.delay(250).springify()}
+              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+            >
               <Text
                 className="font-display text-2xl text-hype"
                 style={{ fontVariant: ["tabular-nums"] }}
@@ -98,13 +105,16 @@ export default function Celebrate() {
                 {minutes}m
               </Text>
               <Text className="font-body text-[11px] text-ink-dim mt-1">of doing</Text>
-            </View>
-            <View className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4">
+            </Animated.View>
+            <Animated.View
+              entering={ZoomIn.delay(350).springify()}
+              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+            >
               <Text testID="celebrate-streak" className="font-display text-2xl text-hype">
                 🔥 {streak}
               </Text>
               <Text className="font-body text-[11px] text-ink-dim mt-1">day streak</Text>
-            </View>
+            </Animated.View>
           </View>
         </Animated.View>
       </View>

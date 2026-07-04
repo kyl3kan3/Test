@@ -88,7 +88,7 @@ export default function Verify() {
           testID="verify-otp"
           className="mt-8 rounded-2xl bg-surface border border-line px-5 py-5 font-display-medium text-2xl text-ink tracking-[12px] text-center"
           placeholder="······"
-          placeholderTextColor="#90A79A"
+          placeholderTextColor="#A89A8D"
           keyboardType="number-pad"
           maxLength={6}
           value={otp}

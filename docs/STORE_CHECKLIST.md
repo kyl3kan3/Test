@@ -15,7 +15,7 @@
 - [ ] Privacy nutrition labels: Email address (account), Photos (app functionality, not linked to identity, not stored), Usage data (analytics/rate limiting), Purchases
 - [ ] App category: Productivity; secondary: Health & Fitness (do NOT claim medical benefit)
 - [ ] Screenshots: 9:16 of home ("What are you dreading?"), breakdown, session, celebration card, streak
-- [ ] Marketing text avoids medical claims — "designed for ADHD brains", never "treats ADHD"
+- [ ] Marketing text avoids medical claims — "designed for ADHD brains", never "treats ADHD"; primary audience framing is "ADHD moms", not a clinical claim
 
 ## Play Console
 
@@ -34,7 +34,7 @@
 
 ## Launch-week growth (from the viral-app research)
 
-- [ ] Recruit 20–60 ADHD-niche micro-creators (pick by view-to-follower ratio); pay per post ($50–150) with usage rights
-- [ ] 2–3 proven hook formats, repeated at volume: "POV: your brain won't let you start" / before-after room resets / "apps that actually get ADHD"
+- [ ] Recruit 20–60 ADHD-mom micro-creators (#adhdmom, #momtok, #adhdparenting; pick by view-to-follower ratio); pay per post ($50–150) with usage rights
+- [ ] 2–3 proven hook formats, repeated at volume: "POV: your brain won't let you start (again)" / before-after room resets with a toddler somewhere in frame / "apps that actually get ADHD moms" / "the mental load, itemized"
 - [ ] Every celebration card carries the wordmark + dothething.app — the share card IS the ad
 - [ ] Set up RevenueCat charts: trial starts, trial→paid conversion (healthy: 25–50%), D7 retention
