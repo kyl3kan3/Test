@@ -70,14 +70,15 @@ export default function Celebrate() {
           <Text className="font-body-semibold text-xs text-hype uppercase tracking-widest">
             Certified thing-doer
           </Text>
-          <Animated.Text
-            entering={ZoomIn.duration(500).springify()}
-            testID="celebrate-headline"
-            className="font-display text-4xl text-ink mt-3 leading-[56px]"
-          >
-            You did{"\n"}
-            <Text className="text-hype">the thing.</Text>
-          </Animated.Text>
+          <Animated.View entering={ZoomIn.duration(500).springify()}>
+            <Text
+              testID="celebrate-headline"
+              className="font-display text-6xl text-ink mt-3 leading-[62px]"
+            >
+              You did{"\n"}
+              <Text className="text-hype">the thing.</Text>
+            </Text>
+          </Animated.View>
           {task ? (
             <Text className="font-body text-lg text-ink-dim mt-4">“{task.title}”</Text>
           ) : null}

@@ -8,7 +8,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-const COLORS = ["#FF7A59", "#FFC24B", "#4ADE9E", "#7DD3FC", "#F8F1EA"];
+const COLORS = ["#E07A5F", "#E8A23D", "#7FA88A", "#7FA8C9", "#C8624A"];
 const COUNT = 42;
 
 function Particle({ index }: { index: number }) {

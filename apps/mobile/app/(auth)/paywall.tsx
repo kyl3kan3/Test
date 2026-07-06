@@ -80,10 +80,7 @@ export default function Paywall() {
           ))}
         </View>
 
-        <Animated.View
-          entering={FadeInUp.delay(450).springify()}
-          className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4"
-        >
+        <View className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4">
           <View className="absolute -top-2.5 right-4 rounded-md bg-hype px-2 py-0.5">
             <Text className="font-body-semibold text-[9px] tracking-widest text-on-primary">
               SAVE 52%
@@ -93,16 +90,13 @@ export default function Paywall() {
           <Text className="font-body text-xs text-ink-dim mt-1">
             3-day free trial, then $3.33/mo billed yearly. Auto-renews.
           </Text>
-        </Animated.View>
-        <Animated.View
-          entering={FadeInUp.delay(520).springify()}
-          className="mt-2.5 rounded-2xl border border-line bg-surface p-4"
-        >
+        </View>
+        <View className="mt-2.5 rounded-2xl border border-line bg-surface p-4">
           <Text className="font-body-semibold text-base text-ink">Monthly · $6.99</Text>
           <Text className="font-body text-xs text-ink-dim mt-1">
             Auto-renews monthly. Cancel anytime.
           </Text>
-        </Animated.View>
+        </View>
 
         <TrialTimeline />
 

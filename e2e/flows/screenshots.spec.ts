@@ -10,7 +10,7 @@ const OUT = process.env.SHOT_DIR ?? "e2e/screens";
 const API = "http://localhost:3000";
 
 async function shot(page: Page, name: string) {
-  await page.waitForTimeout(650); // let animations settle
+  await page.waitForTimeout(1400); // let entrance animations fully settle
   await page.screenshot({ path: `${OUT}/${name}.png` });
 }
 

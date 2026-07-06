@@ -65,24 +65,26 @@ function Blob({
 }
 
 export function Aurora() {
+  // Soft warm wash on the cream ground — barely-there peach & sage, the way
+  // late-afternoon light pools in a room. Kept low so text stays crisp.
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Blob size={420} color="#E85F3F" opacity={0.4} x={-90} y={-140} duration={18000} />
+      <Blob size={440} color="#F2C9B4" opacity={0.5} x={-100} y={-150} duration={18000} />
       <Blob
-        size={300}
-        color="#FFC24B"
-        opacity={0.13}
-        x={190}
-        y={-60}
+        size={320}
+        color="#F4D9A8"
+        opacity={0.4}
+        x={200}
+        y={-50}
         duration={22000}
         delayFactor={0.5}
       />
       <Blob
-        size={320}
-        color="#7DD3FC"
-        opacity={0.1}
-        x={60}
-        y={420}
+        size={340}
+        color="#C9DDCB"
+        opacity={0.35}
+        x={50}
+        y={440}
         duration={26000}
         delayFactor={0.3}
       />

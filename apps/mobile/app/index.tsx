@@ -23,7 +23,7 @@ export default function Gate() {
   if (!checked) {
     return (
       <View className="flex-1 items-center justify-center bg-bg" testID="gate-loading">
-        <ActivityIndicator color="#FF7A59" />
+        <ActivityIndicator color="#E07A5F" />
       </View>
     );
   }

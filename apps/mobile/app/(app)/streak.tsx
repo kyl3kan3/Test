@@ -25,9 +25,9 @@ function FlameGlow() {
     <Svg width={220} height={220} style={{ position: "absolute" }}>
       <Defs>
         <RadialGradient id="fg" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor="#FF7A59" stopOpacity="0.5" />
-          <Stop offset="60%" stopColor="#E85F3F" stopOpacity="0.18" />
-          <Stop offset="100%" stopColor="#E85F3F" stopOpacity="0" />
+          <Stop offset="0%" stopColor="#E07A5F" stopOpacity="0.5" />
+          <Stop offset="60%" stopColor="#E07A5F" stopOpacity="0.18" />
+          <Stop offset="100%" stopColor="#E07A5F" stopOpacity="0" />
         </RadialGradient>
       </Defs>
       <Circle cx={110} cy={110} r={110} fill="url(#fg)" />

@@ -43,7 +43,7 @@ function TickRing({ progress }: { progress: number }) {
             y1={y1}
             x2={x2}
             y2={y2}
-            stroke={on ? colors.primary : colors.surfaceRaised}
+            stroke={on ? colors.primary : colors.border}
             strokeWidth={3}
             strokeLinecap="round"
             opacity={on ? 0.55 + 0.45 * ((i + 1) / Math.max(1, lit)) : 1}
@@ -78,9 +78,9 @@ function BreathGlow() {
           width: GLOW,
           height: GLOW,
           borderRadius: GLOW / 2,
-          backgroundColor: "rgba(255,122,89,0.10)",
+          backgroundColor: "rgba(224,122,95,0.08)",
           borderWidth: 1.5,
-          borderColor: "rgba(255,122,89,0.35)",
+          borderColor: "rgba(224,122,95,0.28)",
         },
         style,
       ]}
@@ -114,10 +114,11 @@ export function BreathingOrbit({
           width: INNER,
           height: INNER,
           borderRadius: INNER / 2,
-          shadowColor: "#E85F3F",
-          shadowOpacity: 0.5,
-          shadowRadius: 24,
-          elevation: 8,
+          shadowColor: "#C8624A",
+          shadowOpacity: 0.18,
+          shadowRadius: 20,
+          shadowOffset: { width: 0, height: 6 },
+          elevation: 6,
         }}
       >
         <Text

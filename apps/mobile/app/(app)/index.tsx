@@ -133,18 +133,18 @@ export default function Home() {
       <View
         className="mt-6 rounded-2xl"
         style={{
-          shadowColor: "#FF7A59",
-          shadowOpacity: 0.35,
-          shadowRadius: 22,
-          shadowOffset: { width: 0, height: 0 },
-          elevation: 6,
+          shadowColor: "#C8624A",
+          shadowOpacity: 0.16,
+          shadowRadius: 20,
+          shadowOffset: { width: 0, height: 8 },
+          elevation: 5,
         }}
       >
         <TextInput
           testID="home-task-input"
-          className="rounded-2xl bg-surface/90 border border-primary/50 px-5 py-5 font-body text-lg text-ink"
+          className="rounded-2xl bg-surface border border-primary/40 px-5 py-5 font-body text-lg text-ink"
           placeholder="e.g. the dish mountain"
-          placeholderTextColor="#A89A8D"
+          placeholderTextColor="#7A6B5D"
           value={title}
           onChangeText={setTitle}
           onSubmitEditing={breakdown}

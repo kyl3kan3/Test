@@ -216,7 +216,7 @@ export default function FocusSession() {
             testID="coach-input"
             className="flex-1 rounded-xl bg-raised border border-line px-4 py-2.5 font-body text-sm text-ink"
             placeholder="I'm stuck / this is boring / help"
-            placeholderTextColor="#A89A8D"
+            placeholderTextColor="#7A6B5D"
             value={draft}
             onChangeText={setDraft}
             onSubmitEditing={say}

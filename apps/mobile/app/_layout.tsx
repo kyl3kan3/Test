@@ -6,12 +6,12 @@ import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
-  Lexend_400Regular,
-  Lexend_500Medium,
-  Lexend_600SemiBold,
+  Nunito_400Regular,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
   useFonts,
-} from "@expo-google-fonts/lexend";
-import { Unbounded_500Medium, Unbounded_700Bold } from "@expo-google-fonts/unbounded";
+} from "@expo-google-fonts/nunito";
+import { Fraunces_500Medium, Fraunces_600SemiBold } from "@expo-google-fonts/fraunces";
 import { configurePurchases, getEntitlement, onEntitlementChange } from "../src/lib/purchases";
 import { useAppState } from "../src/state/appState";
 
@@ -20,11 +20,11 @@ SplashScreen.preventAutoHideAsync().catch(() => {});
 export default function RootLayout() {
   const setPro = useAppState((s) => s.setPro);
   const [fontsLoaded] = useFonts({
-    Lexend_400Regular,
-    Lexend_500Medium,
-    Lexend_600SemiBold,
-    Unbounded_500Medium,
-    Unbounded_700Bold,
+    Nunito_400Regular,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Fraunces_500Medium,
+    Fraunces_600SemiBold,
   });
 
   useEffect(() => {
@@ -39,15 +39,15 @@ export default function RootLayout() {
     if (fontsLoaded) SplashScreen.hideAsync().catch(() => {});
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: "#120D0B" }} />;
+  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: "#FBF5EC" }} />;
 
   return (
     <SafeAreaProvider>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: "#120D0B" },
+          contentStyle: { backgroundColor: "#FBF5EC" },
           animation: "fade",
         }}
       />

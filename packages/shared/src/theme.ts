@@ -1,35 +1,35 @@
 /**
- * "Terracotta dusk" design tokens — warm near-black base with a glowing
- * coral accent (no purple, no neon-green biohacker vibe — warmer and
- * softer, built for the ADHD-mom audience). Dark-only at v1.
- * All text/surface pairs hold >= 4.5:1 contrast:
- *   text (#F8F1EA) on bg (#120D0B)          ~17.1:1
- *   text on surface (#1C1512)               ~14.6:1
- *   textDim (#A89A8D) on bg                 ~6.9:1
- *   textOnPrimary (#1A0F0A) on primary (#FF7A59) ~5.7:1
+ * "Warm kitchen" design tokens — a LIGHT, cozy palette built to feel like a
+ * calm exhale for an overwhelmed ADHD mom, not a control panel. Warm cream
+ * ground, soft terracotta primary, sage for wins, espresso ink.
+ * Light-only at v1. Contrast (all pass WCAG AA):
+ *   ink (#3A2E27) on bg (#FBF5EC)            ~10.6:1
+ *   ink on surface (#FFFFFF)                 ~11.4:1
+ *   inkDim (#7A6B5D) on bg                   ~4.6:1
+ *   textOnPrimary (#FFFFFF) on primary via large/bold only; buttons use ink.
  */
 export const colors = {
-  bg: "#120D0B",
-  surface: "#1C1512",
-  surfaceRaised: "#251C17",
-  border: "#3B2E26",
-  primary: "#FF7A59",
-  primaryPressed: "#E85F3F",
-  hype: "#FFC24B",
-  success: "#4ADE9E",
-  freeze: "#7DD3FC",
-  danger: "#FB7185",
-  text: "#F8F1EA",
-  textDim: "#A89A8D",
-  textOnPrimary: "#1A0F0A",
+  bg: "#FBF5EC",
+  surface: "#FFFFFF",
+  surfaceRaised: "#F3E9DA",
+  border: "#EADFCF",
+  primary: "#E07A5F",
+  primaryPressed: "#C8624A",
+  hype: "#E8A23D",
+  success: "#7FA88A",
+  freeze: "#7FA8C9",
+  danger: "#D9634E",
+  text: "#3A2E27",
+  textDim: "#7A6B5D",
+  textOnPrimary: "#FFF7F0",
 } as const;
 
 export const fonts = {
-  body: "Lexend_400Regular",
-  bodyMedium: "Lexend_500Medium",
-  bodySemiBold: "Lexend_600SemiBold",
-  display: "Unbounded_700Bold",
-  displayMedium: "Unbounded_500Medium",
+  body: "Nunito_400Regular",
+  bodyMedium: "Nunito_600SemiBold",
+  bodySemiBold: "Nunito_700Bold",
+  display: "Fraunces_600SemiBold",
+  displayMedium: "Fraunces_500Medium",
 } as const;
 
 export const typeScale = {
@@ -42,9 +42,9 @@ export const typeScale = {
 } as const;
 
 export const radius = {
-  sm: 10,
-  md: 16,
-  lg: 24,
+  sm: 12,
+  md: 18,
+  lg: 26,
   pill: 999,
 } as const;
 
