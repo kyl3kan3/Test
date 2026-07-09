@@ -62,10 +62,10 @@ export default function Paywall() {
         </Animated.View>
         <View className="mt-6 gap-2.5">
           {[
-            "Unlimited AI task breakdowns",
-            "Live body-double focus sessions",
-            "Photo-of-the-mess planning",
-            "Streaks that forgive rest days",
+            "Unlimited breakdowns for whatever's living in your head rent-free",
+            "A body double in your ear while you start — even if you get pulled away",
+            "Snap the counter, the playroom, the car — we'll sort it into steps",
+            "Streaks built to survive a sick kid or a bad night",
           ].map((line, i) => (
             <Animated.View
               key={line}

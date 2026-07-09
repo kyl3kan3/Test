@@ -64,10 +64,30 @@ export default function Streak() {
   const week = lastNDays(7);
 
   const achievements: { icon: string; title: string; detail: string; done: boolean }[] = [
-    { icon: "🌱", title: "First thing done", detail: "Finish 1 task", done: totalDone >= 1 },
-    { icon: "🔥", title: "On a roll", detail: "3-day streak", done: longest >= 3 },
-    { icon: "⚡", title: "Unstoppable", detail: "7-day streak", done: longest >= 7 },
-    { icon: "🧊", title: "Rest, not reset", detail: "Bank a freeze", done: (view?.freezesAvailable ?? 0) >= 1 },
+    {
+      icon: "🧨",
+      title: "Broke The Freeze",
+      detail: "You stared it down and did it anyway — first task, done.",
+      done: totalDone >= 1,
+    },
+    {
+      icon: "🔥",
+      title: "Three Days Running",
+      detail: "Back-to-back — the list is actually moving, mental load and all.",
+      done: longest >= 3,
+    },
+    {
+      icon: "🚀",
+      title: "A Full Week In",
+      detail: "Seven days of showing up — interruptions, chaos, and all.",
+      done: longest >= 7,
+    },
+    {
+      icon: "🧊",
+      title: "Rest, Not Reset",
+      detail: "You banked a freeze — a hard day doesn't erase the ones before it.",
+      done: (view?.freezesAvailable ?? 0) >= 1,
+    },
   ];
   const earned = achievements.filter((a) => a.done).length;
 

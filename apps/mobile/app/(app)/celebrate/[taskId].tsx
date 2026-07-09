@@ -68,7 +68,7 @@ export default function Celebrate() {
       <View className="flex-1 justify-center">
         <Animated.View entering={FadeInUp.springify()}>
           <Text className="font-body-semibold text-xs text-hype uppercase tracking-widest">
-            Certified thing-doer
+            Screenshot this for the group chat
           </Text>
           <Animated.View entering={ZoomIn.duration(500).springify()}>
             <Text

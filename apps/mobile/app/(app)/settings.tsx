@@ -11,7 +11,7 @@ import { useAppState } from "../../src/state/appState";
 import { PRIVACY_URL, SUPPORT_EMAIL, TERMS_URL } from "../../src/lib/env";
 
 const TONES = [
-  { value: "gentle_cheerleader", label: "Gentle cheerleader" },
+  { value: "gentle_cheerleader", label: "Gentle hype" },
   { value: "chaotic_bestie", label: "Chaotic bestie" },
   { value: "calm_steady", label: "Calm & steady" },
 ];

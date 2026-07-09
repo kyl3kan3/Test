@@ -9,8 +9,8 @@ import { useOnboarding } from "../../src/state/onboarding";
 
 const BUILD_LINES = [
   "Reading your answers…",
-  "Calibrating step sizes for your brain — and your actual day…",
-  "Teaching your coach how to hype you, interruptions and all…",
+  "Calibrating step sizes for your brain — and the witching hour…",
+  "Teaching your coach to hype you through interruptions, group chat and all…",
 ];
 
 export default function Building() {
@@ -62,7 +62,7 @@ export default function Building() {
             {[
               "Steps so small they feel silly — that's the point",
               "A coach in your ear while you start",
-              "Streaks that forgive a bad day",
+              "Streaks that survive a sick kid or a bad night",
             ].map((line, i) => (
               <Animated.Text
                 key={line}

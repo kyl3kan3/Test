@@ -15,9 +15,9 @@ describe("quiz definition", () => {
   it("includes the coach-tone question mapped to hypeStyle", () => {
     const hype = QUIZ_STEPS.find((s) => s.key === "hypeStyle");
     expect(hype?.options).toEqual([
-      "Gentle cheerleader",
-      "Chaotic bestie",
-      "Calm & steady",
+      "Gentle hype — soft, encouraging, never loud",
+      "Chaotic bestie — funny, unhinged, on my side",
+      "Calm & steady — quiet confidence, no exclamation points",
     ]);
   });
 });
@@ -27,7 +27,7 @@ describe("onboarding store", () => {
 
   it("stores answers and derives coach tone", () => {
     const store = useOnboarding.getState();
-    store.setAnswer("hypeStyle", "Chaotic bestie");
+    store.setAnswer("hypeStyle", "Chaotic bestie — funny, unhinged, on my side");
     expect(useOnboarding.getState().coachTone()).toBe("chaotic_bestie");
   });
 
@@ -37,13 +37,33 @@ describe("onboarding store", () => {
 
   it("derives archetypes from worst task types", () => {
     const store = useOnboarding.getState();
-    store.setAnswer("worstTaskTypes", ["Cleaning"]);
-    expect(useOnboarding.getState().archetype().name).toBe("Overwhelmed Optimist");
+    store.setAnswer("worstTaskTypes", [
+      "School stuff — forms, portals, the class group chat",
+    ]);
+    expect(useOnboarding.getState().archetype().name).toBe("Household CEO");
 
-    store.setAnswer("worstTaskTypes", ["Emails/admin"]);
-    expect(useOnboarding.getState().archetype().name).toBe("Deadline Diver");
+    store.setAnswer("worstTaskTypes", ["Household admin — bills, insurance, the inbox"]);
+    expect(useOnboarding.getState().archetype().name).toBe("The Deadline Closer");
 
-    store.setAnswer("worstTaskTypes", ["Self-care"]);
-    expect(useOnboarding.getState().archetype().name).toBe("Momentum Seeker");
+    store.setAnswer("worstTaskTypes", ["The kids' laundry pile"]);
+    expect(useOnboarding.getState().archetype().name).toBe("The Backlog Runner");
+
+    store.setAnswer("worstTaskTypes", []);
+    expect(useOnboarding.getState().archetype().name).toBe(
+      "Unstoppable, Once Started",
+    );
+  });
+
+  it("every worstTaskTypes quiz option maps to a non-fallback archetype", () => {
+    const store = useOnboarding.getState();
+    const options =
+      QUIZ_STEPS.find((s) => s.key === "worstTaskTypes")?.options ?? [];
+    expect(options.length).toBeGreaterThan(0);
+    for (const option of options) {
+      store.setAnswer("worstTaskTypes", [option]);
+      expect(useOnboarding.getState().archetype().name).not.toBe(
+        "Unstoppable, Once Started",
+      );
+    }
   });
 });

@@ -35,6 +35,6 @@
 ## Launch-week growth (from the viral-app research)
 
 - [ ] Recruit 20–60 ADHD-mom micro-creators (#adhdmom, #momtok, #adhdparenting; pick by view-to-follower ratio); pay per post ($50–150) with usage rights
-- [ ] 2–3 proven hook formats, repeated at volume: "POV: your brain won't let you start (again)" / before-after room resets with a toddler somewhere in frame / "apps that actually get ADHD moms" / "the mental load, itemized"
+- [ ] 2–3 proven hook formats, repeated at volume: "POV: you've had 'reply to the class group chat' on your to-do list since Tuesday" / "Rating my kid's permission slips by how many days late I was signing them" / "Body-doubling my most ADHD-mom task: the pile of art projects I can't throw away or display"
 - [ ] Every celebration card carries the wordmark + dothething.app — the share card IS the ad
 - [ ] Set up RevenueCat charts: trial starts, trial→paid conversion (healthy: 25–50%), D7 retention

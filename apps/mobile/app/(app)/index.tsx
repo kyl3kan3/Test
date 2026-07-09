@@ -23,6 +23,27 @@ function greeting(): string {
   return `${day} ${part}`;
 }
 
+// Rotating daily so the input always names a task she actually recognizes.
+const EXAMPLE_DREADS = [
+  "the permission slip that's been on the counter three days",
+  "replying to the class group chat before it hits 200 messages",
+  "packing tomorrow's lunches",
+  "the unread school email with a deadline buried in it",
+  "the school portal whose password you don't remember",
+  "meal planning before the fridge is empty",
+  "the kids' laundry pile that's basically furniture now",
+  "RSVPing to the birthday party before it's too late",
+  "the dentist appointment you've rescheduled twice",
+  "the pile of art projects you can't toss or display",
+];
+
+function examplePlaceholder(): string {
+  const dayOfYear = Math.floor(
+    (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86_400_000,
+  );
+  return `e.g. ${EXAMPLE_DREADS[dayOfYear % EXAMPLE_DREADS.length]}`;
+}
+
 export default function Home() {
   const me = useAppState((s) => s.me);
   const [title, setTitle] = useState("");
@@ -143,7 +164,7 @@ export default function Home() {
         <TextInput
           testID="home-task-input"
           className="rounded-2xl bg-surface border border-primary/40 px-5 py-5 font-body text-lg text-ink"
-          placeholder="e.g. the dish mountain"
+          placeholder={examplePlaceholder()}
           placeholderTextColor="#7A6B5D"
           value={title}
           onChangeText={setTitle}

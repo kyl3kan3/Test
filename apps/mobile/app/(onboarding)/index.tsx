@@ -15,14 +15,17 @@ export default function Hook() {
             Your brain isn't broken.
           </Text>
           <Text className="font-display text-4xl leading-[52px] text-primary mt-2">
-            The mental load is.
+            The mental load never clocks out.
           </Text>
         </Animated.View>
         <Animated.View entering={FadeInUp.delay(250).duration(450).springify()}>
           <Text className="font-body text-base text-ink-dim mt-6 leading-6">
-            DoTheThing is an AI body-double for ADHD moms carrying it all. It
-            breaks the dreaded task into 2-minute steps and sits with you while
-            you start — no judgment about the laundry.
+            DoTheThing is an AI body-double for ADHD moms running the whole
+            operation — permission slips, the school portal, meal planning, the
+            class group chat that won't stop pinging. It turns whatever you're
+            dreading into the next two-minute step and starts it with you. No
+            judgment about the laundry pile, the unread email, or anything else
+            on the list — just a way in.
           </Text>
         </Animated.View>
       </View>
