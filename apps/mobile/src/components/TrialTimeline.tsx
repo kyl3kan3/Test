@@ -16,7 +16,7 @@ export function TrialTimeline() {
       {STEPS.map((s) => (
         <View
           key={s.label}
-          className="flex-1 rounded-xl border border-line bg-surface px-2.5 py-2.5"
+          className="flex-1 rounded-xl border border-line/30 bg-surface/15 px-2.5 py-2.5"
         >
           <Text className="font-body-semibold text-[10px] tracking-widest text-primary">
             {s.label}

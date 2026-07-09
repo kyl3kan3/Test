@@ -65,24 +65,26 @@ function Blob({
 }
 
 export function Aurora() {
+  // Drifting light on the sunset gradient — a golden pool up top, a deeper
+  // magenta bloom below. Low opacity so type stays crisp.
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Blob size={420} color="#E85F3F" opacity={0.4} x={-90} y={-140} duration={18000} />
+      <Blob size={440} color="#FFD9A0" opacity={0.28} x={-100} y={-150} duration={18000} />
       <Blob
-        size={300}
-        color="#FFC24B"
-        opacity={0.13}
-        x={190}
-        y={-60}
+        size={320}
+        color="#FF8E5E"
+        opacity={0.25}
+        x={200}
+        y={-50}
         duration={22000}
         delayFactor={0.5}
       />
       <Blob
-        size={320}
-        color="#7DD3FC"
-        opacity={0.1}
-        x={60}
-        y={420}
+        size={340}
+        color="#8E1F4B"
+        opacity={0.3}
+        x={50}
+        y={440}
         duration={26000}
         delayFactor={0.3}
       />

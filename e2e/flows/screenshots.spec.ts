@@ -10,7 +10,7 @@ const OUT = process.env.SHOT_DIR ?? "e2e/screens";
 const API = "http://localhost:3000";
 
 async function shot(page: Page, name: string) {
-  await page.waitForTimeout(650); // let animations settle
+  await page.waitForTimeout(1400); // let entrance animations fully settle
   await page.screenshot({ path: `${OUT}/${name}.png` });
 }
 
@@ -60,7 +60,7 @@ test("screenshot tour", async ({ page }) => {
   await page.getByTestId("paywall-continue").click();
 
   await expect(page.getByTestId("home-task-input")).toBeVisible({ timeout: 15_000 });
-  await page.getByTestId("home-task-input").fill("clean the dish mountain");
+  await page.getByTestId("home-task-input").fill("the permission slip pile on the counter");
   await page.getByTestId("home-energy-1").click();
   await shot(page, "08-home");
   await page.getByTestId("home-breakdown").click();

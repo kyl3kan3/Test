@@ -38,9 +38,9 @@ export default function Login() {
         </Text>
         <TextInput
           testID="login-email"
-          className="mt-8 rounded-2xl bg-surface border border-line px-5 py-4 font-body text-base text-ink"
+          className="mt-8 rounded-2xl bg-surface/15 border border-line/30 px-5 py-4 font-body text-base text-ink"
           placeholder="you@example.com"
-          placeholderTextColor="#A89A8D"
+          placeholderTextColor="#FFE3D9"
           autoCapitalize="none"
           autoComplete="email"
           keyboardType="email-address"

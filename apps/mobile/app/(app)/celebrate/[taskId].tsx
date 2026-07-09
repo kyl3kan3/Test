@@ -68,23 +68,24 @@ export default function Celebrate() {
       <View className="flex-1 justify-center">
         <Animated.View entering={FadeInUp.springify()}>
           <Text className="font-body-semibold text-xs text-hype uppercase tracking-widest">
-            Certified thing-doer
+            Screenshot this for the group chat
           </Text>
-          <Animated.Text
-            entering={ZoomIn.duration(500).springify()}
-            testID="celebrate-headline"
-            className="font-display text-4xl text-ink mt-3 leading-[56px]"
-          >
-            You did{"\n"}
-            <Text className="text-hype">the thing.</Text>
-          </Animated.Text>
+          <Animated.View entering={ZoomIn.duration(500).springify()}>
+            <Text
+              testID="celebrate-headline"
+              className="font-display text-6xl text-ink mt-3 leading-[62px]"
+            >
+              You did{"\n"}
+              <Text className="font-display-italic text-hype">the thing.</Text>
+            </Text>
+          </Animated.View>
           {task ? (
             <Text className="font-body text-lg text-ink-dim mt-4">“{task.title}”</Text>
           ) : null}
           <View className="flex-row gap-2.5 mt-8">
             <Animated.View
               entering={ZoomIn.delay(150).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
             >
               <Text
                 className="font-display text-2xl text-hype"
@@ -96,7 +97,7 @@ export default function Celebrate() {
             </Animated.View>
             <Animated.View
               entering={ZoomIn.delay(250).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
             >
               <Text
                 className="font-display text-2xl text-hype"
@@ -108,7 +109,7 @@ export default function Celebrate() {
             </Animated.View>
             <Animated.View
               entering={ZoomIn.delay(350).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
             >
               <Text testID="celebrate-streak" className="font-display text-2xl text-hype">
                 🔥 {streak}

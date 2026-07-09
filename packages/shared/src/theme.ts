@@ -1,35 +1,39 @@
 /**
- * "Terracotta dusk" design tokens — warm near-black base with a glowing
- * coral accent (no purple, no neon-green biohacker vibe — warmer and
- * softer, built for the ADHD-mom audience). Dark-only at v1.
- * All text/surface pairs hold >= 4.5:1 contrast:
- *   text (#F8F1EA) on bg (#120D0B)          ~17.1:1
- *   text on surface (#1C1512)               ~14.6:1
- *   textDim (#A89A8D) on bg                 ~6.9:1
- *   textOnPrimary (#1A0F0A) on primary (#FF7A59) ~5.7:1
+ * "Bold sunset" design tokens — a full-bleed coral-to-magenta gradient world
+ * with cream type, golden accents, and near-black ink CTAs. Loud, warm,
+ * main-character energy. The page background is a gradient (painted by the
+ * Screen component: #FF5F45 -> #F04E56 -> #C93A6B); `bg` is its solid
+ * fallback. Surfaces are translucent black overlays (`surface`/`surfaceRaised`
+ * are near-black hexes used with /15-/25 opacity modifiers), and `border` is
+ * cream used at ~/30.
  */
 export const colors = {
-  bg: "#120D0B",
-  surface: "#1C1512",
-  surfaceRaised: "#251C17",
-  border: "#3B2E26",
-  primary: "#FF7A59",
-  primaryPressed: "#E85F3F",
-  hype: "#FFC24B",
-  success: "#4ADE9E",
-  freeze: "#7DD3FC",
-  danger: "#FB7185",
-  text: "#F8F1EA",
-  textDim: "#A89A8D",
-  textOnPrimary: "#1A0F0A",
+  bg: "#F04E56",
+  surface: "#1D0F12",
+  surfaceRaised: "#1D0F12",
+  border: "#FFF6F0",
+  primary: "#FFD9A0",
+  primaryPressed: "#F2C384",
+  hype: "#FFD9A0",
+  success: "#FFF6F0",
+  freeze: "#CDE9FF",
+  danger: "#FFC9B3",
+  text: "#FFF6F0",
+  textDim: "#FFDCCF",
+  textOnPrimary: "#3A1608",
+  /** Deep magenta from the gradient's foot — labels on cream surfaces. */
+  berry: "#C93A6B",
+  /** Near-black warm ink — primary CTA fill. */
+  cta: "#1D1210",
 } as const;
 
 export const fonts = {
-  body: "Lexend_400Regular",
-  bodyMedium: "Lexend_500Medium",
-  bodySemiBold: "Lexend_600SemiBold",
-  display: "Unbounded_700Bold",
-  displayMedium: "Unbounded_500Medium",
+  body: "Nunito_400Regular",
+  bodyMedium: "Nunito_600SemiBold",
+  bodySemiBold: "Nunito_700Bold",
+  display: "Fraunces_600SemiBold",
+  displayMedium: "Fraunces_500Medium",
+  displayItalic: "Fraunces_600SemiBold_Italic",
 } as const;
 
 export const typeScale = {
@@ -42,9 +46,9 @@ export const typeScale = {
 } as const;
 
 export const radius = {
-  sm: 10,
-  md: 16,
-  lg: 24,
+  sm: 12,
+  md: 18,
+  lg: 26,
   pill: 999,
 } as const;
 
@@ -56,3 +60,6 @@ export const spacing = {
   xl: 32,
   xxl: 48,
 } as const;
+
+/** Gradient stops for the full-bleed sunset background. */
+export const sunset = ["#FF5F45", "#F04E56", "#C93A6B"] as const;

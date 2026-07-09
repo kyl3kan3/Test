@@ -50,11 +50,11 @@ export function Chip({
           onPress();
         }}
         className={`rounded-2xl border px-5 py-4 mb-3 ${
-          selected ? "border-primary bg-primary/15" : "border-line bg-surface"
+          selected ? "border-transparent bg-ink" : "border-line/30 bg-surface/15"
         }`}
       >
         <Text
-          className={`font-body-medium text-base ${selected ? "text-primary" : "text-ink"}`}
+          className={`font-body-medium text-base ${selected ? "text-berry font-body-semibold" : "text-ink"}`}
         >
           {label}
         </Text>

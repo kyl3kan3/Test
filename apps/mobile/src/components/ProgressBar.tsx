@@ -14,7 +14,7 @@ export function ProgressBar({ progress }: { progress: number }) {
   const style = useAnimatedStyle(() => ({ width: `${pct.value * 100}%` }));
 
   return (
-    <View className="h-1.5 w-full rounded-full bg-surface overflow-hidden">
+    <View className="h-1.5 w-full rounded-full bg-surface/15 overflow-hidden">
       <Animated.View className="h-full rounded-full bg-primary" style={style} />
     </View>
   );

@@ -57,15 +57,15 @@ export default function Paywall() {
           </Text>
           <Text className="font-display text-3xl text-ink mt-3 leading-[46px]">
             Unlock{"\n"}
-            <Text className="text-primary">your coach</Text>
+            <Text className="font-display-italic text-primary">your coach</Text>
           </Text>
         </Animated.View>
         <View className="mt-6 gap-2.5">
           {[
-            "Unlimited AI task breakdowns",
-            "Live body-double focus sessions",
-            "Photo-of-the-mess planning",
-            "Streaks that forgive rest days",
+            "Unlimited breakdowns for whatever's living in your head rent-free",
+            "A body double in your ear while you start — even if you get pulled away",
+            "Snap the counter, the playroom, the car — we'll sort it into steps",
+            "Streaks built to survive a sick kid or a bad night",
           ].map((line, i) => (
             <Animated.View
               key={line}
@@ -80,10 +80,7 @@ export default function Paywall() {
           ))}
         </View>
 
-        <Animated.View
-          entering={FadeInUp.delay(450).springify()}
-          className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4"
-        >
+        <View className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4">
           <View className="absolute -top-2.5 right-4 rounded-md bg-hype px-2 py-0.5">
             <Text className="font-body-semibold text-[9px] tracking-widest text-on-primary">
               SAVE 52%
@@ -93,16 +90,13 @@ export default function Paywall() {
           <Text className="font-body text-xs text-ink-dim mt-1">
             3-day free trial, then $3.33/mo billed yearly. Auto-renews.
           </Text>
-        </Animated.View>
-        <Animated.View
-          entering={FadeInUp.delay(520).springify()}
-          className="mt-2.5 rounded-2xl border border-line bg-surface p-4"
-        >
+        </View>
+        <View className="mt-2.5 rounded-2xl border border-line/30 bg-surface/15 p-4">
           <Text className="font-body-semibold text-base text-ink">Monthly · $6.99</Text>
           <Text className="font-body text-xs text-ink-dim mt-1">
             Auto-renews monthly. Cancel anytime.
           </Text>
-        </Animated.View>
+        </View>
 
         <TrialTimeline />
 

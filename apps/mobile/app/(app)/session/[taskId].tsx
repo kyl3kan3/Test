@@ -194,14 +194,14 @@ export default function FocusSession() {
                   ? "bg-success"
                   : i === steps.findIndex((x) => x.status === "todo")
                     ? "bg-primary"
-                    : "bg-raised"
+                    : "bg-raised/25"
               }`}
             />
           ))}
         </View>
       </View>
 
-      <View className="rounded-2xl border border-primary/40 bg-surface/90 p-4 mb-4">
+      <View className="rounded-2xl border border-primary/40 bg-surface/20 p-4 mb-4">
         <View className="flex-row items-center gap-2 mb-1.5">
           <View className="h-1.5 w-1.5 rounded-full bg-success" />
           <Text className="font-body-semibold text-[10px] tracking-widest uppercase text-primary">
@@ -214,9 +214,9 @@ export default function FocusSession() {
         <View className="flex-row items-center mt-3 gap-2">
           <TextInput
             testID="coach-input"
-            className="flex-1 rounded-xl bg-raised border border-line px-4 py-2.5 font-body text-sm text-ink"
+            className="flex-1 rounded-xl bg-raised/25 border border-line/30 px-4 py-2.5 font-body text-sm text-ink"
             placeholder="I'm stuck / this is boring / help"
-            placeholderTextColor="#A89A8D"
+            placeholderTextColor="#FFE3D9"
             value={draft}
             onChangeText={setDraft}
             onSubmitEditing={say}

@@ -1,10 +1,14 @@
 import { forwardRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { sunset } from "@dtt/shared/theme";
 
 /**
  * 9:16 share card rendered offscreen at 1080x1920 logical px and captured
  * with react-native-view-shot. Plain StyleSheet on purpose: pixel-exact
- * layout for the exported image, independent of app styling.
+ * layout for the exported image, independent of app styling. Painted on the
+ * same full-bleed sunset gradient as the app itself — the share card IS the
+ * brand.
  */
 
 export type ShareCardData = {
@@ -18,6 +22,12 @@ export const ShareCard = forwardRef<View, { data: ShareCardData }>(
   function ShareCard({ data }, ref) {
     return (
       <View ref={ref} collapsable={false} style={styles.card}>
+        <LinearGradient
+          colors={[...sunset]}
+          start={{ x: 0.15, y: 0 }}
+          end={{ x: 0.75, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
         <View style={styles.inner}>
           <Text style={styles.kicker}>
             {data.variant === "streak" ? "STREAK ALERT" : "I DID THE THING"}
@@ -48,48 +58,46 @@ const styles = StyleSheet.create({
   card: {
     width: 1080,
     height: 1920,
-    backgroundColor: "#120D0B",
+    backgroundColor: "#F04E56",
     justifyContent: "space-between",
     padding: 96,
   },
   inner: { flex: 1, justifyContent: "center" },
   kicker: {
-    fontFamily: "Lexend_600SemiBold",
+    fontFamily: "Nunito_700Bold",
     fontSize: 40,
     letterSpacing: 12,
-    color: "#FF7A59",
+    color: "#FFD9A0",
   },
   headline: {
-    fontFamily: "Unbounded_700Bold",
-    fontSize: 120,
-    lineHeight: 144,
-    color: "#F8F1EA",
+    fontFamily: "Fraunces_600SemiBold",
+    fontSize: 116,
+    lineHeight: 132,
+    color: "#FFF6F0",
     marginTop: 48,
   },
   task: {
-    fontFamily: "Lexend_400Regular",
+    fontFamily: "Nunito_400Regular",
     fontSize: 52,
-    color: "#A89A8D",
+    color: "rgba(255,246,240,0.8)",
     marginTop: 48,
   },
   statsRow: { flexDirection: "row", gap: 64, marginTop: 96 },
   stat: {
-    backgroundColor: "#1C1512",
-    borderColor: "#3B2E26",
-    borderWidth: 2,
-    borderRadius: 32,
+    backgroundColor: "rgba(0,0,0,0.22)",
+    borderRadius: 40,
     paddingVertical: 40,
     paddingHorizontal: 48,
   },
   statValue: {
-    fontFamily: "Unbounded_700Bold",
+    fontFamily: "Fraunces_600SemiBold",
     fontSize: 72,
-    color: "#FFC24B",
+    color: "#FFD9A0",
   },
   statLabel: {
-    fontFamily: "Lexend_400Regular",
+    fontFamily: "Nunito_400Regular",
     fontSize: 32,
-    color: "#A89A8D",
+    color: "rgba(255,246,240,0.75)",
     marginTop: 12,
   },
   watermark: {
@@ -97,17 +105,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderTopWidth: 2,
-    borderTopColor: "#3B2E26",
+    borderTopColor: "rgba(255,246,240,0.35)",
     paddingTop: 48,
   },
   wordmark: {
-    fontFamily: "Unbounded_500Medium",
+    fontFamily: "Fraunces_500Medium",
     fontSize: 44,
-    color: "#F8F1EA",
+    color: "#FFF6F0",
   },
   url: {
-    fontFamily: "Lexend_400Regular",
+    fontFamily: "Nunito_400Regular",
     fontSize: 36,
-    color: "#A89A8D",
+    color: "rgba(255,246,240,0.75)",
   },
 });

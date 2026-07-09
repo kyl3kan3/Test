@@ -67,7 +67,7 @@ export default function TaskDetail() {
             className={`mt-3 rounded-2xl border p-5 ${
               step.status === "done"
                 ? "bg-success/10 border-success/30"
-                : "bg-surface border-line"
+                : "bg-surface/15 border-line/30"
             }`}
           >
             <View className="flex-row items-center justify-between">

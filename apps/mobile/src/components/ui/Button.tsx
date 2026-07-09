@@ -18,22 +18,29 @@ type Variant = "primary" | "success" | "surface" | "ghost" | "danger";
 const CONTAINER: Record<Variant, string> = {
   primary: "",
   success: "",
-  surface: "bg-raised border border-line active:bg-surface",
+  surface: "bg-transparent border-[1.5px] border-line/50 active:bg-surface/15",
   ghost: "bg-transparent",
-  danger: "bg-transparent border border-danger/40",
+  danger: "bg-surface/15 border border-danger/50",
 };
 
 const LABEL: Record<Variant, string> = {
-  primary: "text-on-primary",
-  success: "text-on-primary",
+  // Gold on near-black ink — the mock's signature CTA.
+  primary: "text-primary",
+  // Cream card with the gradient's deep magenta as the label.
+  success: "text-berry",
   surface: "text-ink",
   ghost: "text-ink-dim",
   danger: "text-danger",
 };
 
 const GRADIENTS: Record<string, readonly [string, string, string]> = {
-  primary: ["#FFAB8F", "#FF7A59", "#E85F3F"],
-  success: ["#7FF2C0", "#4ADE9E", "#2FB57F"],
+  primary: ["#2A1B17", "#1D1210", "#150C0A"],
+  success: ["#FFFBF5", "#FFF6F0", "#F7E8DE"],
+};
+// Deep shadow grounds the CTA against the bright gradient.
+const SHADOW: Record<string, string> = {
+  primary: "#40060F",
+  success: "#7A1030",
 };
 
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -85,8 +92,8 @@ export function Button({
   // real-device accessibility tooling) treat the button as permanently
   // "unstable" and unclickable.
   const glowStyle = useAnimatedStyle(() => ({
-    shadowOpacity: 0.45 + glow.value * 0.35,
-    shadowRadius: 18 + glow.value * 14,
+    shadowOpacity: 0.22 + glow.value * 0.22,
+    shadowRadius: 14 + glow.value * 12,
   }));
 
   const onPressIn = () => {
@@ -97,7 +104,9 @@ export function Button({
   };
 
   const content = loading ? (
-    <ActivityIndicator color={gradient ? "#1A0F0A" : "#F8F1EA"} />
+    <ActivityIndicator
+      color={variant === "primary" ? "#FFD9A0" : variant === "success" ? "#C93A6B" : "#FFF6F0"}
+    />
   ) : (
     <Text className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}>
       {label}
@@ -136,9 +145,9 @@ export function Button({
       style={[
         {
           borderRadius: 16,
-          shadowColor: gradient[1],
-          shadowOffset: { width: 0, height: 10 },
-          elevation: 8,
+          shadowColor: SHADOW[variant] ?? gradient[1],
+          shadowOffset: { width: 0, height: 8 },
+          elevation: 6,
         },
         glowStyle,
       ]}
