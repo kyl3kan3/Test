@@ -86,9 +86,9 @@ export default function Verify() {
         </Text>
         <TextInput
           testID="verify-otp"
-          className="mt-8 rounded-2xl bg-surface border border-line px-5 py-5 font-display-medium text-2xl text-ink tracking-[12px] text-center"
+          className="mt-8 rounded-2xl bg-surface/15 border border-line/30 px-5 py-5 font-display-medium text-2xl text-ink tracking-[12px] text-center"
           placeholder="······"
-          placeholderTextColor="#7A6B5D"
+          placeholderTextColor="#FFE3D9"
           keyboardType="number-pad"
           maxLength={6}
           value={otp}

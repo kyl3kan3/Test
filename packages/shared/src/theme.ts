@@ -1,27 +1,30 @@
 /**
- * "Warm kitchen" design tokens — a LIGHT, cozy palette built to feel like a
- * calm exhale for an overwhelmed ADHD mom, not a control panel. Warm cream
- * ground, soft terracotta primary, sage for wins, espresso ink.
- * Light-only at v1. Contrast (all pass WCAG AA):
- *   ink (#3A2E27) on bg (#FBF5EC)            ~10.6:1
- *   ink on surface (#FFFFFF)                 ~11.4:1
- *   inkDim (#7A6B5D) on bg                   ~4.6:1
- *   textOnPrimary (#FFFFFF) on primary via large/bold only; buttons use ink.
+ * "Bold sunset" design tokens — a full-bleed coral-to-magenta gradient world
+ * with cream type, golden accents, and near-black ink CTAs. Loud, warm,
+ * main-character energy. The page background is a gradient (painted by the
+ * Screen component: #FF5F45 -> #F04E56 -> #C93A6B); `bg` is its solid
+ * fallback. Surfaces are translucent black overlays (`surface`/`surfaceRaised`
+ * are near-black hexes used with /15-/25 opacity modifiers), and `border` is
+ * cream used at ~/30.
  */
 export const colors = {
-  bg: "#FBF5EC",
-  surface: "#FFFFFF",
-  surfaceRaised: "#F3E9DA",
-  border: "#EADFCF",
-  primary: "#E07A5F",
-  primaryPressed: "#C8624A",
-  hype: "#E8A23D",
-  success: "#7FA88A",
-  freeze: "#7FA8C9",
-  danger: "#D9634E",
-  text: "#3A2E27",
-  textDim: "#7A6B5D",
-  textOnPrimary: "#FFF7F0",
+  bg: "#F04E56",
+  surface: "#1D0F12",
+  surfaceRaised: "#1D0F12",
+  border: "#FFF6F0",
+  primary: "#FFD9A0",
+  primaryPressed: "#F2C384",
+  hype: "#FFD9A0",
+  success: "#FFF6F0",
+  freeze: "#CDE9FF",
+  danger: "#FFC9B3",
+  text: "#FFF6F0",
+  textDim: "#FFDCCF",
+  textOnPrimary: "#3A1608",
+  /** Deep magenta from the gradient's foot — labels on cream surfaces. */
+  berry: "#C93A6B",
+  /** Near-black warm ink — primary CTA fill. */
+  cta: "#1D1210",
 } as const;
 
 export const fonts = {
@@ -30,6 +33,7 @@ export const fonts = {
   bodySemiBold: "Nunito_700Bold",
   display: "Fraunces_600SemiBold",
   displayMedium: "Fraunces_500Medium",
+  displayItalic: "Fraunces_600SemiBold_Italic",
 } as const;
 
 export const typeScale = {
@@ -56,3 +60,6 @@ export const spacing = {
   xl: 32,
   xxl: 48,
 } as const;
+
+/** Gradient stops for the full-bleed sunset background. */
+export const sunset = ["#FF5F45", "#F04E56", "#C93A6B"] as const;

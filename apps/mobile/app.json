@@ -6,12 +6,12 @@
     "scheme": "dothething",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
-    "backgroundColor": "#FBF5EC",
+    "backgroundColor": "#F04E56",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FBF5EC"
+      "backgroundColor": "#F04E56"
     },
     "ios": {
       "bundleIdentifier": "app.dothething.mobile",
@@ -27,7 +27,7 @@
       "package": "app.dothething.mobile",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FBF5EC"
+        "backgroundColor": "#F04E56"
       },
       "permissions": ["android.permission.CAMERA"]
     },

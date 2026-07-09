@@ -19,15 +19,15 @@ function lastNDays(n: number): string[] {
 
 const DAY_LETTERS = ["S", "M", "T", "W", "T", "F", "S"];
 
-/** Soft coral glow behind the streak flame — the screen's one bright moment. */
+/** Golden glow behind the streak flame — the screen's one bright moment. */
 function FlameGlow() {
   return (
     <Svg width={220} height={220} style={{ position: "absolute" }}>
       <Defs>
         <RadialGradient id="fg" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor="#E07A5F" stopOpacity="0.5" />
-          <Stop offset="60%" stopColor="#E07A5F" stopOpacity="0.18" />
-          <Stop offset="100%" stopColor="#E07A5F" stopOpacity="0" />
+          <Stop offset="0%" stopColor="#FFD9A0" stopOpacity="0.55" />
+          <Stop offset="60%" stopColor="#FFB27A" stopOpacity="0.22" />
+          <Stop offset="100%" stopColor="#FFB27A" stopOpacity="0" />
         </RadialGradient>
       </Defs>
       <Circle cx={110} cy={110} r={110} fill="url(#fg)" />
@@ -37,7 +37,7 @@ function FlameGlow() {
 
 function StatTile({ icon, value, label }: { icon: string; value: number; label: string }) {
   return (
-    <View className="flex-1 items-center rounded-2xl border border-line bg-surface py-4">
+    <View className="flex-1 items-center rounded-2xl border border-line/30 bg-surface/15 py-4">
       <Text className="text-base">{icon}</Text>
       <Text
         className="font-display text-2xl text-ink mt-1"
@@ -147,8 +147,8 @@ export default function Streak() {
                     : kind === "freeze"
                       ? "bg-freeze/70"
                       : isToday
-                        ? "border-2 border-primary/60 bg-surface"
-                        : "border border-line bg-surface"
+                        ? "border-2 border-primary/60 bg-surface/15"
+                        : "border border-line/30 bg-surface/15"
                 }`}
               >
                 {kind === "active" ? (
@@ -188,7 +188,7 @@ export default function Streak() {
             key={a.title}
             entering={(a.done ? ZoomIn : FadeInUp).delay(i * 80).springify()}
             className={`rounded-2xl border p-4 ${
-              a.done ? "border-primary/40 bg-primary/10" : "border-line bg-surface"
+              a.done ? "border-primary/40 bg-primary/10" : "border-line/30 bg-surface/15"
             }`}
             style={{ width: "47.5%" }}
           >
@@ -226,7 +226,7 @@ export default function Streak() {
                     ? "bg-primary/80"
                     : kind === "freeze"
                       ? "bg-freeze/60"
-                      : "bg-surface border border-line"
+                      : "bg-surface/15 border border-line/30"
                 }`}
               >
                 <Text
@@ -240,7 +240,7 @@ export default function Streak() {
             );
           })}
         </View>
-        <View className="flex-row items-center mt-6 self-start rounded-full bg-surface border border-line px-4 py-2">
+        <View className="flex-row items-center mt-6 self-start rounded-full bg-surface/15 border border-line/30 px-4 py-2">
           <Text className="font-body text-sm text-freeze">
             🧊 {view?.freezesAvailable ?? 0} freeze{(view?.freezesAvailable ?? 0) === 1 ? "" : "s"} banked
           </Text>

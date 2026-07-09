@@ -31,7 +31,7 @@ export function ProgressRing({ done, total }: { done: number; total: number }) {
           cx={size / 2}
           cy={size / 2}
           r={r}
-          stroke={colors.surfaceRaised}
+          stroke="rgba(255,246,240,0.3)"
           strokeWidth={stroke}
           fill="none"
         />
@@ -39,7 +39,7 @@ export function ProgressRing({ done, total }: { done: number; total: number }) {
           cx={size / 2}
           cy={size / 2}
           r={r}
-          stroke={colors.success}
+          stroke={colors.primary}
           strokeWidth={stroke}
           fill="none"
           animatedProps={animatedProps}

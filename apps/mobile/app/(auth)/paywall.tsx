@@ -57,7 +57,7 @@ export default function Paywall() {
           </Text>
           <Text className="font-display text-3xl text-ink mt-3 leading-[46px]">
             Unlock{"\n"}
-            <Text className="text-primary">your coach</Text>
+            <Text className="font-display-italic text-primary">your coach</Text>
           </Text>
         </Animated.View>
         <View className="mt-6 gap-2.5">
@@ -91,7 +91,7 @@ export default function Paywall() {
             3-day free trial, then $3.33/mo billed yearly. Auto-renews.
           </Text>
         </View>
-        <View className="mt-2.5 rounded-2xl border border-line bg-surface p-4">
+        <View className="mt-2.5 rounded-2xl border border-line/30 bg-surface/15 p-4">
           <Text className="font-body-semibold text-base text-ink">Monthly · $6.99</Text>
           <Text className="font-body text-xs text-ink-dim mt-1">
             Auto-renews monthly. Cancel anytime.

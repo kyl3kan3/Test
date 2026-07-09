@@ -65,15 +65,15 @@ function Blob({
 }
 
 export function Aurora() {
-  // Soft warm wash on the cream ground — barely-there peach & sage, the way
-  // late-afternoon light pools in a room. Kept low so text stays crisp.
+  // Drifting light on the sunset gradient — a golden pool up top, a deeper
+  // magenta bloom below. Low opacity so type stays crisp.
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <Blob size={440} color="#F2C9B4" opacity={0.5} x={-100} y={-150} duration={18000} />
+      <Blob size={440} color="#FFD9A0" opacity={0.28} x={-100} y={-150} duration={18000} />
       <Blob
         size={320}
-        color="#F4D9A8"
-        opacity={0.4}
+        color="#FF8E5E"
+        opacity={0.25}
         x={200}
         y={-50}
         duration={22000}
@@ -81,8 +81,8 @@ export function Aurora() {
       />
       <Blob
         size={340}
-        color="#C9DDCB"
-        opacity={0.35}
+        color="#8E1F4B"
+        opacity={0.3}
         x={50}
         y={440}
         duration={26000}

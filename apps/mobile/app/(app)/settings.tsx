@@ -108,7 +108,7 @@ export default function Settings() {
       <Text className="font-body-semibold text-sm text-ink-dim uppercase tracking-widest mt-8 mb-3">
         Legal & support
       </Text>
-      <View className="rounded-2xl bg-surface border border-line">
+      <View className="rounded-2xl bg-surface/15 border border-line/30">
         {[
           { label: "Terms of Use", action: () => Linking.openURL(TERMS_URL) },
           { label: "Privacy Policy", action: () => Linking.openURL(PRIVACY_URL) },
@@ -120,7 +120,7 @@ export default function Settings() {
           <Pressable
             key={row.label}
             onPress={row.action}
-            className={`px-5 py-4 ${i > 0 ? "border-t border-line" : ""}`}
+            className={`px-5 py-4 ${i > 0 ? "border-t border-line/30" : ""}`}
           >
             <Text className="font-body text-base text-ink">{row.label}</Text>
           </Pressable>

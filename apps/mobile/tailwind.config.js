@@ -20,6 +20,8 @@ module.exports = {
         ink: colors.text,
         "ink-dim": colors.textDim,
         "on-primary": colors.textOnPrimary,
+        berry: colors.berry,
+        cta: colors.cta,
       },
       fontFamily: {
         body: ["Nunito_400Regular"],
@@ -27,6 +29,7 @@ module.exports = {
         "body-semibold": ["Nunito_700Bold"],
         display: ["Fraunces_600SemiBold"],
         "display-medium": ["Fraunces_500Medium"],
+        "display-italic": ["Fraunces_600SemiBold_Italic"],
       },
     },
   },

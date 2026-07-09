@@ -43,7 +43,7 @@ export default function Recap() {
               <Animated.View
                 key={stat.label}
                 entering={FadeInUp.delay(i * 70).springify()}
-                className="rounded-2xl bg-surface border border-line px-5 py-4 min-w-[45%]"
+                className="rounded-2xl bg-surface/15 border border-line/30 px-5 py-4 min-w-[45%]"
               >
                 <Text className="font-display-medium text-3xl text-primary">
                   {stat.value}

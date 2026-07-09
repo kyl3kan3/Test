@@ -46,7 +46,7 @@ function TickRing({ progress }: { progress: number }) {
             stroke={on ? colors.primary : colors.border}
             strokeWidth={3}
             strokeLinecap="round"
-            opacity={on ? 0.55 + 0.45 * ((i + 1) / Math.max(1, lit)) : 1}
+            opacity={on ? 0.6 + 0.4 * ((i + 1) / Math.max(1, lit)) : 0.3}
           />
         );
       })}
@@ -78,9 +78,9 @@ function BreathGlow() {
           width: GLOW,
           height: GLOW,
           borderRadius: GLOW / 2,
-          backgroundColor: "rgba(224,122,95,0.08)",
+          backgroundColor: "rgba(255,217,160,0.07)",
           borderWidth: 1.5,
-          borderColor: "rgba(224,122,95,0.28)",
+          borderColor: "rgba(255,217,160,0.35)",
         },
         style,
       ]}
@@ -109,15 +109,15 @@ export function BreathingOrbit({
       <TickRing progress={past ? 1 : progress} />
       <BreathGlow />
       <View
-        className="items-center justify-center bg-surface"
+        className="items-center justify-center bg-surface/25"
         style={{
           width: INNER,
           height: INNER,
           borderRadius: INNER / 2,
-          shadowColor: "#C8624A",
-          shadowOpacity: 0.18,
-          shadowRadius: 20,
-          shadowOffset: { width: 0, height: 6 },
+          shadowColor: "#40060F",
+          shadowOpacity: 0.35,
+          shadowRadius: 22,
+          shadowOffset: { width: 0, height: 8 },
           elevation: 6,
         }}
       >

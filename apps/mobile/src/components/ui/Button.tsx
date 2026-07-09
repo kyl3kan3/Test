@@ -18,27 +18,29 @@ type Variant = "primary" | "success" | "surface" | "ghost" | "danger";
 const CONTAINER: Record<Variant, string> = {
   primary: "",
   success: "",
-  surface: "bg-raised border border-line active:bg-surface",
+  surface: "bg-transparent border-[1.5px] border-line/50 active:bg-surface/15",
   ghost: "bg-transparent",
-  danger: "bg-transparent border border-danger/40",
+  danger: "bg-surface/15 border border-danger/50",
 };
 
 const LABEL: Record<Variant, string> = {
-  primary: "text-on-primary",
-  success: "text-on-primary",
+  // Gold on near-black ink — the mock's signature CTA.
+  primary: "text-primary",
+  // Cream card with the gradient's deep magenta as the label.
+  success: "text-berry",
   surface: "text-ink",
   ghost: "text-ink-dim",
   danger: "text-danger",
 };
 
 const GRADIENTS: Record<string, readonly [string, string, string]> = {
-  primary: ["#EC9079", "#E07A5F", "#D0684E"],
-  success: ["#98BFA3", "#7FA88A", "#6B9276"],
+  primary: ["#2A1B17", "#1D1210", "#150C0A"],
+  success: ["#FFFBF5", "#FFF6F0", "#F7E8DE"],
 };
-// Soft warm drop shadow (not a colored neon glow) suits the light ground.
+// Deep shadow grounds the CTA against the bright gradient.
 const SHADOW: Record<string, string> = {
-  primary: "#C8624A",
-  success: "#6B9276",
+  primary: "#40060F",
+  success: "#7A1030",
 };
 
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -102,7 +104,9 @@ export function Button({
   };
 
   const content = loading ? (
-    <ActivityIndicator color={gradient ? "#FFF7F0" : "#3A2E27"} />
+    <ActivityIndicator
+      color={variant === "primary" ? "#FFD9A0" : variant === "success" ? "#C93A6B" : "#FFF6F0"}
+    />
   ) : (
     <Text className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}>
       {label}

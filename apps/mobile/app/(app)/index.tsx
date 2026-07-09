@@ -120,7 +120,7 @@ export default function Home() {
         <Pressable
           testID="home-streak"
           onPress={() => router.push("/(app)/streak")}
-          className="flex-row items-center rounded-full bg-surface/80 border border-line px-4 py-2"
+          className="flex-row items-center rounded-full bg-surface/20 border border-line/30 px-4 py-2"
         >
           <Text className="font-body-semibold text-base text-hype">
             🔥 {streak}
@@ -130,14 +130,14 @@ export default function Home() {
           <Pressable
             testID="home-recap"
             onPress={() => router.push("/(app)/recap")}
-            className="rounded-full bg-surface border border-line px-4 py-2"
+            className="rounded-full bg-surface/15 border border-line/30 px-4 py-2"
           >
             <Text className="font-body text-base text-ink">📊</Text>
           </Pressable>
           <Pressable
             testID="home-settings"
             onPress={() => router.push("/(app)/settings")}
-            className="rounded-full bg-surface border border-line px-4 py-2"
+            className="rounded-full bg-surface/15 border border-line/30 px-4 py-2"
           >
             <Text className="font-body text-base text-ink">⚙️</Text>
           </Pressable>
@@ -148,14 +148,14 @@ export default function Home() {
         <Text className="font-body text-sm text-ink-dim mt-9">{greeting()}</Text>
         <Text className="font-display text-3xl text-ink mt-2 leading-[46px]">
           What are you{"\n"}
-          <Text className="text-primary">dreading?</Text>
+          <Text className="font-display-italic text-primary">dreading?</Text>
         </Text>
       </Animated.View>
       <View
         className="mt-6 rounded-2xl"
         style={{
-          shadowColor: "#C8624A",
-          shadowOpacity: 0.16,
+          shadowColor: "#40060F",
+          shadowOpacity: 0.3,
           shadowRadius: 20,
           shadowOffset: { width: 0, height: 8 },
           elevation: 5,
@@ -163,9 +163,9 @@ export default function Home() {
       >
         <TextInput
           testID="home-task-input"
-          className="rounded-2xl bg-surface border border-primary/40 px-5 py-5 font-body text-lg text-ink"
+          className="rounded-2xl bg-surface/15 border border-primary/40 px-5 py-5 font-body text-lg text-ink"
           placeholder={examplePlaceholder()}
-          placeholderTextColor="#7A6B5D"
+          placeholderTextColor="#FFE3D9"
           value={title}
           onChangeText={setTitle}
           onSubmitEditing={breakdown}
@@ -173,18 +173,18 @@ export default function Home() {
         />
       </View>
 
-      <View className="flex-row bg-surface border border-line rounded-full p-1 mt-4">
+      <View className="flex-row bg-surface/15 rounded-full p-1 mt-4">
         {ENERGY.map((e) => (
           <Pressable
             key={e.level}
             testID={`home-energy-${e.level}`}
             onPress={() => setEnergy(e.level)}
             className={`flex-1 items-center rounded-full py-2 ${
-              energy === e.level ? "bg-primary/25 border border-primary/50" : ""
+              energy === e.level ? "bg-ink" : ""
             }`}
           >
             <Text
-              className={`font-body text-xs ${energy === e.level ? "text-ink font-body-semibold" : "text-ink-dim"}`}
+              className={`font-body text-xs ${energy === e.level ? "text-berry font-body-semibold" : "text-ink-dim"}`}
             >
               {e.label}
             </Text>
@@ -237,7 +237,7 @@ export default function Home() {
                 <Pressable
                   testID={`home-task-${task.id}`}
                   onPress={() => router.push(`/(app)/task/${task.id}`)}
-                  className="mt-3 flex-row items-center gap-4 rounded-2xl bg-surface/90 border border-line p-4"
+                  className="mt-3 flex-row items-center gap-4 rounded-2xl bg-surface/20 border border-line/30 p-4"
                 >
                   <ProgressRing done={done} total={task.steps.length} />
                   <View className="flex-1">

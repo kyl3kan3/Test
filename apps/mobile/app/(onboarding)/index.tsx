@@ -14,7 +14,7 @@ export default function Hook() {
           <Text className="font-display text-4xl leading-[52px] text-ink">
             Your brain isn't broken.
           </Text>
-          <Text className="font-display text-4xl leading-[52px] text-primary mt-2">
+          <Text className="font-display-italic text-4xl leading-[52px] text-primary mt-2">
             The mental load never clocks out.
           </Text>
         </Animated.View>

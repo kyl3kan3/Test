@@ -58,7 +58,7 @@ export default function Building() {
           <Text className="font-body text-base text-ink-dim mt-4 leading-6">
             {archetype.blurb}
           </Text>
-          <View className="mt-8 rounded-2xl bg-surface border border-line p-5">
+          <View className="mt-8 rounded-2xl bg-surface/15 border border-line/30 p-5">
             {[
               "Steps so small they feel silly — that's the point",
               "A coach in your ear while you start",

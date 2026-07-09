@@ -11,7 +11,11 @@ import {
   Nunito_700Bold,
   useFonts,
 } from "@expo-google-fonts/nunito";
-import { Fraunces_500Medium, Fraunces_600SemiBold } from "@expo-google-fonts/fraunces";
+import {
+  Fraunces_500Medium,
+  Fraunces_600SemiBold,
+  Fraunces_600SemiBold_Italic,
+} from "@expo-google-fonts/fraunces";
 import { configurePurchases, getEntitlement, onEntitlementChange } from "../src/lib/purchases";
 import { useAppState } from "../src/state/appState";
 
@@ -25,6 +29,7 @@ export default function RootLayout() {
     Nunito_700Bold,
     Fraunces_500Medium,
     Fraunces_600SemiBold,
+    Fraunces_600SemiBold_Italic,
   });
 
   useEffect(() => {
@@ -39,15 +44,15 @@ export default function RootLayout() {
     if (fontsLoaded) SplashScreen.hideAsync().catch(() => {});
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: "#FBF5EC" }} />;
+  if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: "#F04E56" }} />;
 
   return (
     <SafeAreaProvider>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: "#FBF5EC" },
+          contentStyle: { backgroundColor: "#F04E56" },
           animation: "fade",
         }}
       />

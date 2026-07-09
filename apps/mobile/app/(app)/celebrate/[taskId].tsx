@@ -76,7 +76,7 @@ export default function Celebrate() {
               className="font-display text-6xl text-ink mt-3 leading-[62px]"
             >
               You did{"\n"}
-              <Text className="text-hype">the thing.</Text>
+              <Text className="font-display-italic text-hype">the thing.</Text>
             </Text>
           </Animated.View>
           {task ? (
@@ -85,7 +85,7 @@ export default function Celebrate() {
           <View className="flex-row gap-2.5 mt-8">
             <Animated.View
               entering={ZoomIn.delay(150).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
             >
               <Text
                 className="font-display text-2xl text-hype"
@@ -97,7 +97,7 @@ export default function Celebrate() {
             </Animated.View>
             <Animated.View
               entering={ZoomIn.delay(250).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
             >
               <Text
                 className="font-display text-2xl text-hype"
@@ -109,7 +109,7 @@ export default function Celebrate() {
             </Animated.View>
             <Animated.View
               entering={ZoomIn.delay(350).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/90 border border-line px-2 py-4"
+              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
             >
               <Text testID="celebrate-streak" className="font-display text-2xl text-hype">
                 🔥 {streak}
