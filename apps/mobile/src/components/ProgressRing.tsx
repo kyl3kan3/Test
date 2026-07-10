@@ -7,7 +7,7 @@ import { durations } from "../lib/motion";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
-/** Small completion ring for resumable task cards. */
+/** Small completion ring for resumable task cards (drawn on cream cards). */
 export function ProgressRing({ done, total }: { done: number; total: number }) {
   const size = 38;
   const stroke = 3.5;
@@ -31,7 +31,7 @@ export function ProgressRing({ done, total }: { done: number; total: number }) {
           cx={size / 2}
           cy={size / 2}
           r={r}
-          stroke="rgba(255,246,240,0.3)"
+          stroke="rgba(201,58,107,0.18)"
           strokeWidth={stroke}
           fill="none"
         />
@@ -39,7 +39,7 @@ export function ProgressRing({ done, total }: { done: number; total: number }) {
           cx={size / 2}
           cy={size / 2}
           r={r}
-          stroke={colors.primary}
+          stroke={colors.accent}
           strokeWidth={stroke}
           fill="none"
           animatedProps={animatedProps}
@@ -47,7 +47,7 @@ export function ProgressRing({ done, total }: { done: number; total: number }) {
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
       </Svg>
-      <Text className="font-body-semibold text-[9px] text-ink-dim">
+      <Text className="font-body-semibold text-[9px] text-accent">
         {Math.round(pct * 100)}%
       </Text>
     </View>

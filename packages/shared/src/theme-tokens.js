@@ -16,4 +16,8 @@ module.exports.colors = {
   textOnPrimary: "#3A1608",
   berry: "#C93A6B",
   cta: "#1D1210",
+  card: "#FFFBF5",
+  cardInk: "#3A1620",
+  cardDim: "#B4737D",
+  accent: "#E8484F",
 };

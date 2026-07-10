@@ -3,9 +3,10 @@
  * with cream type, golden accents, and near-black ink CTAs. Loud, warm,
  * main-character energy. The page background is a gradient (painted by the
  * Screen component: #FF5F45 -> #F04E56 -> #C93A6B); `bg` is its solid
- * fallback. Surfaces are translucent black overlays (`surface`/`surfaceRaised`
- * are near-black hexes used with /15-/25 opacity modifiers), and `border` is
- * cream used at ~/30.
+ * fallback. Content surfaces are solid cream cards (`card`, with `cardInk`/
+ * `cardDim` text) floated on warm shadows; dark translucent overlays
+ * (`surface`/`surfaceRaised` at /15-/25) remain only for selection controls
+ * in their unselected state, and `border` is cream used at ~/30.
  */
 export const colors = {
   bg: "#F04E56",
@@ -25,6 +26,14 @@ export const colors = {
   berry: "#C93A6B",
   /** Near-black warm ink — primary CTA fill. */
   cta: "#1D1210",
+  /** Solid cream card surface — content sits on these, not on dark glass. */
+  card: "#FFFBF5",
+  /** Dark berry-ink body text on cream cards. */
+  cardInk: "#3A1620",
+  /** Muted rose secondary text on cream cards. */
+  cardDim: "#B4737D",
+  /** Saturated coral accent for rings/progress drawn on cream. */
+  accent: "#E8484F",
 } as const;
 
 export const fonts = {

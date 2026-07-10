@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { Screen } from "../../src/components/ui/Screen";
+import { cardShadow } from "../../src/lib/cardShadow";
 import { Button } from "../../src/components/ui/Button";
 import { authClient } from "../../src/lib/authClient";
 import { api } from "../../src/lib/api";
@@ -86,9 +87,10 @@ export default function Verify() {
         </Text>
         <TextInput
           testID="verify-otp"
-          className="mt-8 rounded-2xl bg-surface/15 border border-line/30 px-5 py-5 font-display-medium text-2xl text-ink tracking-[12px] text-center"
+          className="mt-8 rounded-2xl bg-card px-5 py-5 font-display-medium text-2xl text-card-ink tracking-[12px] text-center"
+          style={cardShadow}
           placeholder="······"
-          placeholderTextColor="#FFE3D9"
+          placeholderTextColor="#B4737D"
           keyboardType="number-pad"
           maxLength={6}
           value={otp}

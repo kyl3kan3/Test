@@ -10,6 +10,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { cardShadow } from "../../lib/cardShadow";
 import { haptics } from "../../lib/haptics";
 import { springs } from "../../lib/motion";
 
@@ -18,7 +19,7 @@ type Variant = "primary" | "success" | "surface" | "ghost" | "danger";
 const CONTAINER: Record<Variant, string> = {
   primary: "",
   success: "",
-  surface: "bg-transparent border-[1.5px] border-line/50 active:bg-surface/15",
+  surface: "bg-card active:bg-success",
   ghost: "bg-transparent",
   danger: "bg-surface/15 border border-danger/50",
 };
@@ -28,7 +29,7 @@ const LABEL: Record<Variant, string> = {
   primary: "text-primary",
   // Cream card with the gradient's deep magenta as the label.
   success: "text-berry",
-  surface: "text-ink",
+  surface: "text-berry",
   ghost: "text-ink-dim",
   danger: "text-danger",
 };
@@ -105,7 +106,13 @@ export function Button({
 
   const content = loading ? (
     <ActivityIndicator
-      color={variant === "primary" ? "#FFD9A0" : variant === "success" ? "#C93A6B" : "#FFF6F0"}
+      color={
+        variant === "primary"
+          ? "#FFD9A0"
+          : variant === "success" || variant === "surface"
+            ? "#C93A6B"
+            : "#FFF6F0"
+      }
     />
   ) : (
     <Text className={`font-body-semibold ${big ? "text-lg" : "text-base"} ${LABEL[variant]}`}>
@@ -133,7 +140,7 @@ export function Button({
 
   if (!gradient) {
     return (
-      <Animated.View style={pressStyle}>
+      <Animated.View style={[pressStyle, variant === "surface" ? cardShadow : null]}>
         {pressable(`${CONTAINER[variant]} ${disabled ? "opacity-40" : ""}`)}
       </Animated.View>
     );

@@ -6,6 +6,7 @@ import { Screen } from "../../src/components/ui/Screen";
 import { Button } from "../../src/components/ui/Button";
 import { ProgressBar } from "../../src/components/ProgressBar";
 import { useOnboarding } from "../../src/state/onboarding";
+import { cardShadow } from "../../src/lib/cardShadow";
 
 const BUILD_LINES = [
   "Reading your answers…",
@@ -58,7 +59,7 @@ export default function Building() {
           <Text className="font-body text-base text-ink-dim mt-4 leading-6">
             {archetype.blurb}
           </Text>
-          <View className="mt-8 rounded-2xl bg-surface/15 border border-line/30 p-5">
+          <View className="mt-8 rounded-2xl bg-card p-5" style={cardShadow}>
             {[
               "Steps so small they feel silly — that's the point",
               "A coach in your ear while you start",
@@ -67,7 +68,7 @@ export default function Building() {
               <Animated.Text
                 key={line}
                 entering={FadeInUp.delay(200 + i * 90).springify()}
-                className="font-body text-base text-ink py-1.5"
+                className="font-body text-base text-card-ink py-1.5"
               >
                 ✓ {line}
               </Animated.Text>
