@@ -2,14 +2,14 @@
  * "Bold sunset" design tokens — a full-bleed coral-to-magenta gradient world
  * with cream type, golden accents, and near-black ink CTAs. Loud, warm,
  * main-character energy. The page background is a gradient (painted by the
- * Screen component: #FF5F45 -> #F04E56 -> #C93A6B); `bg` is its solid
+ * Screen component: #C63E44 -> #93294D -> #571A44); `bg` is its solid
  * fallback. Content surfaces are solid cream cards (`card`, with `cardInk`/
  * `cardDim` text) floated on warm shadows; dark translucent overlays
  * (`surface`/`surfaceRaised` at /15-/25) remain only for selection controls
  * in their unselected state, and `border` is cream used at ~/30.
  */
 export const colors = {
-  bg: "#F04E56",
+  bg: "#93294D",
   surface: "#1D0F12",
   surfaceRaised: "#1D0F12",
   border: "#FFF6F0",
@@ -71,4 +71,4 @@ export const spacing = {
 } as const;
 
 /** Gradient stops for the full-bleed sunset background. */
-export const sunset = ["#FF5F45", "#F04E56", "#C93A6B"] as const;
+export const sunset = ["#C63E44", "#93294D", "#571A44"] as const;
