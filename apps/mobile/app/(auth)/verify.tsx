@@ -9,6 +9,7 @@ import { api } from "../../src/lib/api";
 import { logInPurchases } from "../../src/lib/purchases";
 import { useOnboarding } from "../../src/state/onboarding";
 import { useAppState } from "../../src/state/appState";
+import { IS_DEMO } from "../../src/lib/env";
 
 export default function Verify() {
   const { email } = useLocalSearchParams<{ email: string }>();
@@ -85,6 +86,11 @@ export default function Verify() {
         <Text className="font-body text-base text-ink-dim mt-3">
           We sent a 6-digit code to {email}
         </Text>
+        {IS_DEMO ? (
+          <Text className="font-body-semibold text-sm text-primary mt-2">
+            Demo mode: type any 6 digits.
+          </Text>
+        ) : null}
         <TextInput
           testID="verify-otp"
           className="mt-8 rounded-2xl bg-card px-5 py-5 font-display-medium text-2xl text-card-ink tracking-[12px] text-center"
