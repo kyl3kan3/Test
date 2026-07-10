@@ -5,6 +5,7 @@ import Animated, { FadeInUp } from "react-native-reanimated";
 import { Screen } from "../../src/components/ui/Screen";
 import { Button } from "../../src/components/ui/Button";
 import { api, type WeeklyRecap } from "../../src/lib/api";
+import { cardShadow } from "../../src/lib/cardShadow";
 
 export default function Recap() {
   const [recap, setRecap] = useState<WeeklyRecap | null>(null);
@@ -43,12 +44,14 @@ export default function Recap() {
               <Animated.View
                 key={stat.label}
                 entering={FadeInUp.delay(i * 70).springify()}
-                className="rounded-2xl bg-surface/15 border border-line/30 px-5 py-4 min-w-[45%]"
+                className="min-w-[45%]"
               >
-                <Text className="font-display-medium text-3xl text-primary">
-                  {stat.value}
-                </Text>
-                <Text className="font-body text-xs text-ink-dim mt-1">{stat.label}</Text>
+                <View className="rounded-2xl bg-card px-5 py-4" style={cardShadow}>
+                  <Text className="font-display-medium text-3xl text-berry">
+                    {stat.value}
+                  </Text>
+                  <Text className="font-body text-xs text-card-dim mt-1">{stat.label}</Text>
+                </View>
               </Animated.View>
             ))}
           </View>

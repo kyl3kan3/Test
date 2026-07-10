@@ -9,6 +9,7 @@ import { ProgressRing } from "../../src/components/ProgressRing";
 import { api, type Task } from "../../src/lib/api";
 import { prepareImage } from "../../src/lib/imagePrep";
 import { useAppState } from "../../src/state/appState";
+import { cardShadow } from "../../src/lib/cardShadow";
 
 const ENERGY = [
   { level: 1, label: "Running on fumes" },
@@ -120,9 +121,10 @@ export default function Home() {
         <Pressable
           testID="home-streak"
           onPress={() => router.push("/(app)/streak")}
-          className="flex-row items-center rounded-full bg-surface/20 border border-line/30 px-4 py-2"
+          className="flex-row items-center rounded-full bg-card px-4 py-2"
+          style={cardShadow}
         >
-          <Text className="font-body-semibold text-base text-hype">
+          <Text className="font-body-semibold text-base text-berry">
             🔥 {streak}
           </Text>
         </Pressable>
@@ -130,16 +132,18 @@ export default function Home() {
           <Pressable
             testID="home-recap"
             onPress={() => router.push("/(app)/recap")}
-            className="rounded-full bg-surface/15 border border-line/30 px-4 py-2"
+            className="rounded-full bg-card px-4 py-2"
+            style={cardShadow}
           >
-            <Text className="font-body text-base text-ink">📊</Text>
+            <Text className="font-body text-base text-card-ink">📊</Text>
           </Pressable>
           <Pressable
             testID="home-settings"
             onPress={() => router.push("/(app)/settings")}
-            className="rounded-full bg-surface/15 border border-line/30 px-4 py-2"
+            className="rounded-full bg-card px-4 py-2"
+            style={cardShadow}
           >
-            <Text className="font-body text-base text-ink">⚙️</Text>
+            <Text className="font-body text-base text-card-ink">⚙️</Text>
           </Pressable>
         </View>
       </View>
@@ -163,9 +167,9 @@ export default function Home() {
       >
         <TextInput
           testID="home-task-input"
-          className="rounded-2xl bg-surface/15 border border-primary/40 px-5 py-5 font-body text-lg text-ink"
+          className="rounded-2xl bg-card px-5 py-5 font-body text-lg text-card-ink"
           placeholder={examplePlaceholder()}
-          placeholderTextColor="#FFE3D9"
+          placeholderTextColor="#B4737D"
           value={title}
           onChangeText={setTitle}
           onSubmitEditing={breakdown}
@@ -173,7 +177,7 @@ export default function Home() {
         />
       </View>
 
-      <View className="flex-row bg-surface/15 rounded-full p-1 mt-4">
+      <View className="flex-row bg-cta/25 rounded-full p-1 mt-4">
         {ENERGY.map((e) => (
           <Pressable
             key={e.level}
@@ -237,14 +241,15 @@ export default function Home() {
                 <Pressable
                   testID={`home-task-${task.id}`}
                   onPress={() => router.push(`/(app)/task/${task.id}`)}
-                  className="mt-3 flex-row items-center gap-4 rounded-2xl bg-surface/20 border border-line/30 p-4"
+                  className="mt-3 flex-row items-center gap-4 rounded-2xl bg-card p-4"
+                  style={cardShadow}
                 >
                   <ProgressRing done={done} total={task.steps.length} />
                   <View className="flex-1">
-                    <Text className="font-body-medium text-base text-ink">
+                    <Text className="font-body-medium text-base text-card-ink">
                       {task.title}
                     </Text>
-                    <Text className="font-body text-xs text-ink-dim mt-0.5">
+                    <Text className="font-body text-xs text-card-dim mt-0.5">
                       {left} tiny step{left === 1 ? "" : "s"} left · ~{mins} min
                     </Text>
                   </View>

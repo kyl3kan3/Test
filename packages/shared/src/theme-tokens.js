@@ -1,7 +1,7 @@
 // CommonJS mirror of theme.ts color tokens for tailwind.config.js (which
 // cannot import TS). Keep in sync with theme.ts.
 module.exports.colors = {
-  bg: "#F04E56",
+  bg: "#93294D",
   surface: "#1D0F12",
   surfaceRaised: "#1D0F12",
   border: "#FFF6F0",
@@ -16,4 +16,8 @@ module.exports.colors = {
   textOnPrimary: "#3A1608",
   berry: "#C93A6B",
   cta: "#1D1210",
+  card: "#FFFBF5",
+  cardInk: "#3A1620",
+  cardDim: "#B4737D",
+  accent: "#E8484F",
 };

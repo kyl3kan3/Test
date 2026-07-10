@@ -5,6 +5,7 @@ import Svg, { Circle, Defs, RadialGradient, Stop } from "react-native-svg";
 import Animated, { FadeInUp, ZoomIn } from "react-native-reanimated";
 import { Screen } from "../../src/components/ui/Screen";
 import { api, type StreakView } from "../../src/lib/api";
+import { cardShadow } from "../../src/lib/cardShadow";
 
 function lastNDays(n: number): string[] {
   const days: string[] = [];
@@ -37,15 +38,15 @@ function FlameGlow() {
 
 function StatTile({ icon, value, label }: { icon: string; value: number; label: string }) {
   return (
-    <View className="flex-1 items-center rounded-2xl border border-line/30 bg-surface/15 py-4">
+    <View className="flex-1 items-center rounded-2xl bg-card py-4" style={cardShadow}>
       <Text className="text-base">{icon}</Text>
       <Text
-        className="font-display text-2xl text-ink mt-1"
+        className="font-display text-2xl text-card-ink mt-1"
         style={{ fontVariant: ["tabular-nums"] }}
       >
         {value}
       </Text>
-      <Text className="font-body text-[11px] text-ink-dim mt-1 text-center">{label}</Text>
+      <Text className="font-body text-[11px] text-card-dim mt-1 text-center">{label}</Text>
     </View>
   );
 }
@@ -102,21 +103,24 @@ export default function Streak() {
       </View>
 
       <View className="items-center mt-8" style={{ height: 220 }}>
-        <Animated.View
-          entering={ZoomIn.duration(550).springify()}
-          className="items-center justify-center"
-          style={{ width: 220, height: 220 }}
-        >
-          <FlameGlow />
-          <Text className="text-4xl">🔥</Text>
-          <Text
-            testID="streak-current"
-            className="font-display text-5xl text-ink mt-1"
-            style={{ fontVariant: ["tabular-nums"] }}
+        <Animated.View entering={ZoomIn.duration(550).springify()}>
+          {/* Layout classes live on a plain View — NativeWind classes on
+              Animated.View are unreliable in the web export. */}
+          <View
+            className="items-center justify-center"
+            style={{ width: 220, height: 220 }}
           >
-            {current}
-          </Text>
-          <Text className="font-body text-sm text-ink-dim mt-1">day streak</Text>
+            <FlameGlow />
+            <Text className="text-4xl">🔥</Text>
+            <Text
+              testID="streak-current"
+              className="font-display text-5xl text-ink mt-1"
+              style={{ fontVariant: ["tabular-nums"] }}
+            >
+              {current}
+            </Text>
+            <Text className="font-body text-sm text-ink-dim mt-1">day streak</Text>
+          </View>
         </Animated.View>
       </View>
       <View className="items-center mt-1">
@@ -182,32 +186,29 @@ export default function Streak() {
           {earned}/{achievements.length}
         </Text>
       </View>
+      {/* No entering animations here: these sit below the fold, and mount-time
+          entrances both play unseen and ghost in the web renderer. */}
       <View className="flex-row flex-wrap mt-4" style={{ gap: 10 }}>
-        {achievements.map((a, i) => (
-          <Animated.View
-            key={a.title}
-            entering={(a.done ? ZoomIn : FadeInUp).delay(i * 80).springify()}
-            className={`rounded-2xl border p-4 ${
-              a.done ? "border-primary/40 bg-primary/10" : "border-line/30 bg-surface/15"
-            }`}
-            style={{ width: "47.5%" }}
-          >
+        {achievements.map((a) => (
+          <View key={a.title} style={{ width: "47.5%" }}>
+            <View
+              className={`rounded-2xl p-4 ${a.done ? "bg-card" : "bg-card/40"}`}
+              style={a.done ? cardShadow : undefined}
+            >
             <View className="flex-row items-center justify-between">
               <Text className="text-xl">{a.icon}</Text>
               {a.done ? (
-                <Animated.View
-                  entering={ZoomIn.delay(i * 80 + 200).springify()}
-                  className="h-5 w-5 items-center justify-center rounded-full bg-primary"
-                >
+                <View className="h-5 w-5 items-center justify-center rounded-full bg-primary">
                   <Text className="font-body-semibold text-[10px] text-on-primary">✓</Text>
-                </Animated.View>
+                </View>
               ) : null}
             </View>
-            <Text className={`font-body-semibold text-sm mt-2 ${a.done ? "text-ink" : "text-ink-dim"}`}>
+            <Text className={`font-body-semibold text-sm mt-2 ${a.done ? "text-card-ink" : "text-card-ink/80"}`}>
               {a.title}
             </Text>
-            <Text className="font-body text-[11px] text-ink-dim mt-0.5">{a.detail}</Text>
-          </Animated.View>
+            <Text className="font-body text-[11px] text-card-dim mt-0.5">{a.detail}</Text>
+            </View>
+          </View>
         ))}
       </View>
 
@@ -240,8 +241,8 @@ export default function Streak() {
             );
           })}
         </View>
-        <View className="flex-row items-center mt-6 self-start rounded-full bg-surface/15 border border-line/30 px-4 py-2">
-          <Text className="font-body text-sm text-freeze">
+        <View className="flex-row items-center mt-6 self-start rounded-full bg-card px-4 py-2" style={cardShadow}>
+          <Text className="font-body-medium text-sm text-berry">
             🧊 {view?.freezesAvailable ?? 0} freeze{(view?.freezesAvailable ?? 0) === 1 ? "" : "s"} banked
           </Text>
         </View>

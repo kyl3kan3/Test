@@ -11,6 +11,8 @@ export default tseslint.config(
       "**/drizzle/**",
       "**/coverage/**",
       "**/web-build/**",
+      "**/dist-demo/**",
+      "public/demo/**", // built demo bundle, not source
       "e2e/test-results/**",
     ],
   },

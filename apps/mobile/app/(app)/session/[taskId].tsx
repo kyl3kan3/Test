@@ -10,6 +10,7 @@ import { Aurora } from "../../../src/components/Aurora";
 import { api, type Task } from "../../../src/lib/api";
 import { haptics } from "../../../src/lib/haptics";
 import { useCoachChat } from "../../../src/hooks/useCoachChat";
+import { cardShadow } from "../../../src/lib/cardShadow";
 
 export default function FocusSession() {
   useKeepAwake();
@@ -201,22 +202,22 @@ export default function FocusSession() {
         </View>
       </View>
 
-      <View className="rounded-2xl border border-primary/40 bg-surface/20 p-4 mb-4">
+      <View className="rounded-2xl bg-card p-4 mb-4" style={cardShadow}>
         <View className="flex-row items-center gap-2 mb-1.5">
-          <View className="h-1.5 w-1.5 rounded-full bg-success" />
-          <Text className="font-body-semibold text-[10px] tracking-widest uppercase text-primary">
+          <View className="h-1.5 w-1.5 rounded-full bg-accent" />
+          <Text className="font-body-semibold text-[10px] tracking-widest uppercase text-berry">
             Coach · live
           </Text>
         </View>
-        <Text testID="coach-line" className="font-body text-sm text-ink leading-5">
+        <Text testID="coach-line" className="font-body text-sm text-card-ink leading-5">
           {lastAssistantText}
         </Text>
         <View className="flex-row items-center mt-3 gap-2">
           <TextInput
             testID="coach-input"
-            className="flex-1 rounded-xl bg-raised/25 border border-line/30 px-4 py-2.5 font-body text-sm text-ink"
+            className="flex-1 rounded-xl bg-berry/10 px-4 py-2.5 font-body text-sm text-card-ink"
             placeholder="I'm stuck / this is boring / help"
-            placeholderTextColor="#FFE3D9"
+            placeholderTextColor="#B4737D"
             value={draft}
             onChangeText={setDraft}
             onSubmitEditing={say}

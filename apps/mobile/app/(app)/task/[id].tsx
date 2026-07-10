@@ -5,6 +5,7 @@ import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { Screen } from "../../../src/components/ui/Screen";
 import { Button } from "../../../src/components/ui/Button";
 import { api, type Task } from "../../../src/lib/api";
+import { cardShadow } from "../../../src/lib/cardShadow";
 
 export default function TaskDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -46,8 +47,8 @@ export default function TaskDetail() {
           {task.title}
         </Text>
         {task.vibeCheck ? (
-          <View className="mt-4 rounded-2xl bg-primary/10 border border-primary/30 p-4">
-            <Text testID="task-vibecheck" className="font-body text-sm text-ink leading-5">
+          <View className="mt-4 rounded-2xl bg-card p-4" style={cardShadow}>
+            <Text testID="task-vibecheck" className="font-body text-sm text-card-ink leading-5">
               {task.vibeCheck}
             </Text>
           </View>
@@ -61,23 +62,23 @@ export default function TaskDetail() {
 
       <View className="mt-6">
         {task.steps.map((step, i) => (
-          <Animated.View
-            key={step.id}
-            entering={FadeInUp.delay(i * 70).springify()}
-            className={`mt-3 rounded-2xl border p-5 ${
-              step.status === "done"
-                ? "bg-success/10 border-success/30"
-                : "bg-surface/15 border-line/30"
-            }`}
-          >
+          <Animated.View key={step.id} entering={FadeInUp.delay(i * 70).springify()}>
+            {/* Card bg lives on a plain View — bg classes on Animated.View
+                collapse in the web export. */}
+            <View
+              className={`mt-3 rounded-2xl p-5 ${
+                step.status === "done" ? "bg-card/60" : "bg-card"
+              }`}
+              style={step.status === "done" ? undefined : cardShadow}
+            >
             <View className="flex-row items-center justify-between">
-              <Text className="font-body text-xs text-ink-dim">
+              <Text className="font-body text-xs text-card-dim">
                 {step.status === "done" ? "✓ done" : `~${Math.round(step.estimatedSeconds / 60) || 1} min`}
               </Text>
               {step.status === "todo" ? (
                 <Text
                   testID={`step-split-${i}`}
-                  className="font-body text-xs text-primary"
+                  className="font-body-semibold text-xs text-berry"
                   onPress={() => split(step.id)}
                 >
                   {splitting === step.id ? "shrinking…" : "too big?"}
@@ -87,14 +88,15 @@ export default function TaskDetail() {
             <Text
               testID={`step-title-${i}`}
               className={`font-body-medium text-base mt-1 ${
-                step.status === "done" ? "text-ink-dim line-through" : "text-ink"
+                step.status === "done" ? "text-card-dim line-through" : "text-card-ink"
               }`}
             >
               {i + 1}. {step.title}
             </Text>
             {step.detail && step.status !== "done" ? (
-              <Text className="font-body text-sm text-ink-dim mt-1">{step.detail}</Text>
+              <Text className="font-body text-sm text-card-dim mt-1">{step.detail}</Text>
             ) : null}
+            </View>
           </Animated.View>
         ))}
       </View>

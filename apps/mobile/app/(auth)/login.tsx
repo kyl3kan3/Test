@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import { router } from "expo-router";
 import { Screen } from "../../src/components/ui/Screen";
+import { cardShadow } from "../../src/lib/cardShadow";
 import { Button } from "../../src/components/ui/Button";
 import { authClient } from "../../src/lib/authClient";
 
@@ -38,9 +39,10 @@ export default function Login() {
         </Text>
         <TextInput
           testID="login-email"
-          className="mt-8 rounded-2xl bg-surface/15 border border-line/30 px-5 py-4 font-body text-base text-ink"
+          className="mt-8 rounded-2xl bg-card px-5 py-4 font-body text-base text-card-ink"
+          style={cardShadow}
           placeholder="you@example.com"
-          placeholderTextColor="#FFE3D9"
+          placeholderTextColor="#B4737D"
           autoCapitalize="none"
           autoComplete="email"
           keyboardType="email-address"

@@ -9,6 +9,7 @@ import { authClient } from "../../src/lib/authClient";
 import { restorePurchases } from "../../src/lib/purchases";
 import { useAppState } from "../../src/state/appState";
 import { PRIVACY_URL, SUPPORT_EMAIL, TERMS_URL } from "../../src/lib/env";
+import { cardShadow } from "../../src/lib/cardShadow";
 
 const TONES = [
   { value: "gentle_cheerleader", label: "Gentle hype" },
@@ -108,7 +109,7 @@ export default function Settings() {
       <Text className="font-body-semibold text-sm text-ink-dim uppercase tracking-widest mt-8 mb-3">
         Legal & support
       </Text>
-      <View className="rounded-2xl bg-surface/15 border border-line/30">
+      <View className="rounded-2xl bg-card" style={cardShadow}>
         {[
           { label: "Terms of Use", action: () => Linking.openURL(TERMS_URL) },
           { label: "Privacy Policy", action: () => Linking.openURL(PRIVACY_URL) },
@@ -120,9 +121,9 @@ export default function Settings() {
           <Pressable
             key={row.label}
             onPress={row.action}
-            className={`px-5 py-4 ${i > 0 ? "border-t border-line/30" : ""}`}
+            className={`px-5 py-4 ${i > 0 ? "border-t border-card-dim/20" : ""}`}
           >
-            <Text className="font-body text-base text-ink">{row.label}</Text>
+            <Text className="font-body text-base text-card-ink">{row.label}</Text>
           </Pressable>
         ))}
       </View>

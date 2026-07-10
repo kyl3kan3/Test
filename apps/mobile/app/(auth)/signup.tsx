@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import { router } from "expo-router";
 import { Screen } from "../../src/components/ui/Screen";
+import { cardShadow } from "../../src/lib/cardShadow";
 import { Button } from "../../src/components/ui/Button";
 import { authClient } from "../../src/lib/authClient";
+import { IS_DEMO } from "../../src/lib/env";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -37,11 +39,17 @@ export default function Signup() {
         <Text className="font-body text-base text-ink-dim mt-3 leading-6">
           No passwords. We'll email you a 6-digit code.
         </Text>
+        {IS_DEMO ? (
+          <Text className="font-body-semibold text-sm text-primary mt-2">
+            Demo mode: any email works — nothing is actually sent.
+          </Text>
+        ) : null}
         <TextInput
           testID="signup-email"
-          className="mt-8 rounded-2xl bg-surface/15 border border-line/30 px-5 py-4 font-body text-base text-ink"
+          className="mt-8 rounded-2xl bg-card px-5 py-4 font-body text-base text-card-ink"
+          style={cardShadow}
           placeholder="you@example.com"
-          placeholderTextColor="#FFE3D9"
+          placeholderTextColor="#B4737D"
           autoCapitalize="none"
           autoComplete="email"
           keyboardType="email-address"

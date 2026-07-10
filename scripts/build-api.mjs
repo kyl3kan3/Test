@@ -28,8 +28,11 @@ writeFileSync(
       routes: [
         { src: "/terms", dest: "/terms.html" },
         { src: "/privacy", dest: "/privacy.html" },
+        { src: "/demo/?", dest: "/demo/index.html" },
         { handle: "filesystem" },
         { src: "/api/(.*)", dest: "/api/index" },
+        // SPA fallback: client-side routes under /demo survive a refresh.
+        { src: "/demo/(.*)", dest: "/demo/index.html" },
       ],
     },
     null,

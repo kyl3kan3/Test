@@ -13,6 +13,7 @@ import {
   restorePurchases,
 } from "../../src/lib/purchases";
 import { useAppState } from "../../src/state/appState";
+import { cardShadow } from "../../src/lib/cardShadow";
 
 /**
  * Hard paywall — no path into the app without the `pro` entitlement.
@@ -80,20 +81,20 @@ export default function Paywall() {
           ))}
         </View>
 
-        <View className="mt-6 rounded-2xl border-[1.5px] border-primary bg-primary/10 p-4">
+        <View className="mt-6 rounded-2xl border-[1.5px] border-primary bg-card p-4" style={cardShadow}>
           <View className="absolute -top-2.5 right-4 rounded-md bg-hype px-2 py-0.5">
             <Text className="font-body-semibold text-[9px] tracking-widest text-on-primary">
               SAVE 52%
             </Text>
           </View>
-          <Text className="font-body-semibold text-base text-ink">Yearly · $39.99</Text>
-          <Text className="font-body text-xs text-ink-dim mt-1">
+          <Text className="font-body-semibold text-base text-card-ink">Yearly · $39.99</Text>
+          <Text className="font-body text-xs text-card-dim mt-1">
             3-day free trial, then $3.33/mo billed yearly. Auto-renews.
           </Text>
         </View>
-        <View className="mt-2.5 rounded-2xl border border-line/30 bg-surface/15 p-4">
-          <Text className="font-body-semibold text-base text-ink">Monthly · $6.99</Text>
-          <Text className="font-body text-xs text-ink-dim mt-1">
+        <View className="mt-2.5 rounded-2xl bg-card/75 p-4">
+          <Text className="font-body-semibold text-base text-card-ink">Monthly · $6.99</Text>
+          <Text className="font-body text-xs text-card-dim mt-1">
             Auto-renews monthly. Cancel anytime.
           </Text>
         </View>

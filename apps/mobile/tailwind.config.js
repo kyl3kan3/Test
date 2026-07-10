@@ -22,6 +22,10 @@ module.exports = {
         "on-primary": colors.textOnPrimary,
         berry: colors.berry,
         cta: colors.cta,
+        card: colors.card,
+        "card-ink": colors.cardInk,
+        "card-dim": colors.cardDim,
+        accent: colors.accent,
       },
       fontFamily: {
         body: ["Nunito_400Regular"],

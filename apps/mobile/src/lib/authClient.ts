@@ -1,7 +1,8 @@
 import { Platform } from "react-native";
 import { createAuthClient } from "better-auth/react";
 import { emailOTPClient } from "better-auth/client/plugins";
-import { API_URL } from "./env";
+import { API_URL, IS_DEMO } from "./env";
+import { demoAuthClient } from "./demoApi";
 
 function nativePlugins(): never[] {
   if (Platform.OS === "web") return [];
@@ -17,11 +18,18 @@ function nativePlugins(): never[] {
   ] as never[];
 }
 
-export const authClient = createAuthClient({
-  baseURL: API_URL,
-  basePath: "/api/auth",
-  plugins: [emailOTPClient(), ...nativePlugins()],
-});
+function realAuthClient() {
+  return createAuthClient({
+    baseURL: API_URL,
+    basePath: "/api/auth",
+    plugins: [emailOTPClient(), ...nativePlugins()],
+  });
+}
+
+// Demo builds fake the handful of auth calls the screens actually make.
+export const authClient = (
+  IS_DEMO ? (demoAuthClient as unknown) : realAuthClient()
+) as ReturnType<typeof realAuthClient>;
 
 /** Cookie header for API calls. Empty on web (browser sends cookies itself). */
 export function sessionCookie(): string {

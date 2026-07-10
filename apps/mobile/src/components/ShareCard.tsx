@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   card: {
     width: 1080,
     height: 1920,
-    backgroundColor: "#F04E56",
+    backgroundColor: "#93294D",
     justifyContent: "space-between",
     padding: 96,
   },

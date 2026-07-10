@@ -8,6 +8,7 @@ import { Confetti } from "../../../src/components/Confetti";
 import { ShareCard } from "../../../src/components/ShareCard";
 import { api, type Task } from "../../../src/lib/api";
 import { haptics } from "../../../src/lib/haptics";
+import { cardShadow } from "../../../src/lib/cardShadow";
 
 export default function Celebrate() {
   const { taskId } = useLocalSearchParams<{ taskId: string }>();
@@ -83,38 +84,35 @@ export default function Celebrate() {
             <Text className="font-body text-lg text-ink-dim mt-4">“{task.title}”</Text>
           ) : null}
           <View className="flex-row gap-2.5 mt-8">
-            <Animated.View
-              entering={ZoomIn.delay(150).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
-            >
+            <Animated.View entering={ZoomIn.delay(150).springify()} className="flex-1">
+              <View className="items-center rounded-2xl bg-card px-2 py-4" style={cardShadow}>
               <Text
-                className="font-display text-2xl text-hype"
+                className="font-display text-2xl text-berry"
                 style={{ fontVariant: ["tabular-nums"] }}
               >
                 {doneSteps}
               </Text>
-              <Text className="font-body text-[11px] text-ink-dim mt-1">steps slain</Text>
+              <Text className="font-body text-[11px] text-card-dim mt-1">steps slain</Text>
+              </View>
             </Animated.View>
-            <Animated.View
-              entering={ZoomIn.delay(250).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
-            >
+            <Animated.View entering={ZoomIn.delay(250).springify()} className="flex-1">
+              <View className="items-center rounded-2xl bg-card px-2 py-4" style={cardShadow}>
               <Text
-                className="font-display text-2xl text-hype"
+                className="font-display text-2xl text-berry"
                 style={{ fontVariant: ["tabular-nums"] }}
               >
                 {minutes}m
               </Text>
-              <Text className="font-body text-[11px] text-ink-dim mt-1">of doing</Text>
+              <Text className="font-body text-[11px] text-card-dim mt-1">of doing</Text>
+              </View>
             </Animated.View>
-            <Animated.View
-              entering={ZoomIn.delay(350).springify()}
-              className="flex-1 items-center rounded-2xl bg-surface/20 border border-line/30 px-2 py-4"
-            >
-              <Text testID="celebrate-streak" className="font-display text-2xl text-hype">
+            <Animated.View entering={ZoomIn.delay(350).springify()} className="flex-1">
+              <View className="items-center rounded-2xl bg-card px-2 py-4" style={cardShadow}>
+              <Text testID="celebrate-streak" className="font-display text-2xl text-berry">
                 🔥 {streak}
               </Text>
-              <Text className="font-body text-[11px] text-ink-dim mt-1">day streak</Text>
+              <Text className="font-body text-[11px] text-card-dim mt-1">day streak</Text>
+              </View>
             </Animated.View>
           </View>
         </Animated.View>

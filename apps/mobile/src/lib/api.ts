@@ -1,5 +1,6 @@
-import { API_URL } from "./env";
+import { API_URL, IS_DEMO } from "./env";
 import { sessionCookie } from "./authClient";
+import { demoRequest } from "./demoApi";
 
 export class ApiError extends Error {
   constructor(
@@ -14,6 +15,7 @@ async function request<T>(
   path: string,
   init?: RequestInit & { json?: unknown },
 ): Promise<T> {
+  if (IS_DEMO) return demoRequest<T>(path, init);
   const headers: Record<string, string> = {
     ...(init?.headers as Record<string, string> | undefined),
   };
